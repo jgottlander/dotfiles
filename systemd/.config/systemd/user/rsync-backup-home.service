@@ -1,0 +1,8 @@
+[Unit]
+Description=Backs up home to omv
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/rsync -aP --delete -e ssh %h/ josef@omv:/mnt/externa/Backup/josef/ --exclude-from=%h/rsync-homedir-excludes.txt
