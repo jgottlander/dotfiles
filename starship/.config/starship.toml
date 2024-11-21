@@ -6,8 +6,8 @@
 palette = "catppuccin_macchiato"
 
 
-format = """$directory$character"""
-right_format = """$all"""
+# format = """$directory$character"""
+# right_format = """$all"""
 
 
 [palettes.catppuccin_macchiato]
