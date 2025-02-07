@@ -1,0 +1,20 @@
+[Unit]
+Description=Home Assistant Fusion
+Wants=network-online.target
+After=network-online.target
+After=local-fs.target
+
+[Container]
+Image=ghcr.io/matt8707/ha-fusion
+PublishPort=5050:5050
+Environment=TZ=Europe/Stockholm
+Environment=HASS_URL=http://192.168.1.100:8123
+Volume=ha-fusion_data:/app/data
+Network=bridge
+
+[Service]
+Restart=on-failure
+TimeoutStartSec=900
+
+[Install]
+WantedBy=default.target

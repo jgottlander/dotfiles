@@ -1,0 +1,26 @@
+[Unit]
+Description=GlueTun VPN container
+Wants=network-online.target
+After=network-online.target local-fs.target vpn_stack-pod.service
+
+[Container]
+Image=qmcgaw/gluetun
+Pod=vpn_stack.pod
+AddCapability=NET_ADMIN
+AddDevice=/dev/net/tun
+Volume=gluetun_data:/gluetun
+Environment=VPN_SERVICE_PROVIDER=mullvad
+Environment=VPN_TYPE=wireguard
+Environment=WIREGUARD_PRIVATE_KEY=ANn1tcpOo67I5a2VsHq1Iir02T4zukvO/bp/E9T3j1E=
+Environment=WIREGUARD_ADDRESSES=10.72.200.244/32
+Environment=SERVER_CITIES=Malmö
+Environment=TZ=Europe/Stockholm
+Environment=UPDATER_PERIOD=24h
+Environment=FIREWALL_VPN_INPUT_PORTS=6881
+
+[Service]
+Restart=on-failure
+TimeoutStartSec=900
+
+[Install]
+WantedBy=default.target

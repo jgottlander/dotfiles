@@ -1,0 +1,21 @@
+[Unit]
+Description=EmbyServer
+After=local-fs.target network.target
+
+[Container]
+Image=emby/embyserver:latest
+Network=host
+Environment=UID=0
+Environment=GID=0
+#Environment=GIDLIST=100
+#UserNS=keep-id
+Volume=embyserver_data:/config
+Volume=/mnt/media:/media
+AddDevice=/dev/dri
+
+[Service]
+Restart=on-failure
+TimeoutStartSec=900
+
+[Install]
+WantedBy=multi-user.target default.target

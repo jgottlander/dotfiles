@@ -1,0 +1,22 @@
+[Unit]
+Description=Lidarr container
+Wants=network-online.target
+After=network-online.target local-fs.target vpn_stack-pod.service systemd-gluetun.service
+
+[Container]
+Image=lscr.io/linuxserver/lidarr:latest
+Pod=vpn_stack.pod
+Environment=PUID=0
+Environment=PGID=0
+Environment=TZ=Europe/Stockholm
+Volume=lidarr_data:/config
+Volume=/mnt/media/Musik:/music
+Volume=/mnt/externa/Nedladdningar:/downloads
+Network=gluetun.container
+
+[Service]
+Restart=on-failure
+TimeoutStartSec=900
+
+[Install]
+WantedBy=default.target

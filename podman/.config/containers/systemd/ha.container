@@ -1,0 +1,22 @@
+[Unit]
+Description=Home Assistant Server
+Wants=network-online.target
+After=network-online.target
+After=local-fs.target
+
+[Container]
+Image=ghcr.io/home-assistant/home-assistant:stable
+UserNS=keep-id
+GroupAdd=keep-groups
+Environment=TZ=Europe/Stockholm
+Volume=ha_data:/config
+Volume=/run/dbus:/run/dbus:ro
+Network=host
+AddDevice=/dev/ttyACM0
+
+[Service]
+Restart=on-failure
+TimeoutStartSec=900
+
+[Install]
+WantedBy=default.target

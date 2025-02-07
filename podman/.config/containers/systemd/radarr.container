@@ -1,0 +1,22 @@
+[Unit]
+Description=Radarr container
+Wants=network-online.target
+After=network-online.target local-fs.target vpn_stack-pod.service systemd-gluetun.service
+
+[Container]
+Image=lscr.io/linuxserver/radarr:latest
+Pod=vpn_stack.pod
+Environment=PUID=0
+Environment=PGID=0
+Environment=TZ=Europe/Stockholm
+Volume=radarr_data:/config
+Volume=/mnt/media/Filmer:/movies
+Volume=/mnt/externa/Nedladdningar:/downloads
+Network=gluetun.container
+
+[Service]
+Restart=on-failure
+TimeoutStartSec=900
+
+[Install]
+WantedBy=default.target

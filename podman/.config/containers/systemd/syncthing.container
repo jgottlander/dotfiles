@@ -1,0 +1,22 @@
+[Unit]
+Description=File synchronization tool
+Wants=network-online.target
+After=network-online.target
+After=local-fs.target
+
+[Container]
+Image=syncthing/syncthing:latest
+#Environment=UID=0
+#Environment=GID=0
+UserNS=keep-id
+Volume=syncthing_data:/var/syncthing
+Volume=/mnt/externa/Data:/data:rw
+
+Network=host
+
+[Service]
+Restart=on-failure
+TimeoutStartSec=900
+
+[Install]
+WantedBy=default.target

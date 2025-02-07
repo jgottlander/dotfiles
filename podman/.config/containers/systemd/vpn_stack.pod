@@ -1,0 +1,22 @@
+[Unit]
+Description=VPN Stack
+Wants=network-online.target
+After=network-online.target
+After=local-fs.target
+
+[Pod]
+PublishPort=8080:8080/tcp
+PublishPort=6881:6881/tcp
+PublishPort=6881:6881/udp
+PublishPort=8686:8686
+PublishPort=9696:9696
+PublishPort=7878:7878
+PublishPort=8787:8787
+PublishPort=8989:8989
+
+[Service]
+Restart=on-failure
+TimeoutStartSec=900
+
+[Install]
+WantedBy=default.target
