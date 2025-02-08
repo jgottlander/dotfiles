@@ -24,16 +24,13 @@ if [ -d ~/.bashrc.d ]; then
 fi
 unset rc
 
-### bling.sh source start
-test -f /usr/share/ublue-os/bluefin-cli/bling.sh && source /usr/share/ublue-os/bluefin-cli/bling.sh
-### bling.sh source end
-
 alias dusort='du -d 1 -h | sort -h'
-
 alias omv="ssh josef@omv"
 alias retropie="ssh josef@retropie"
 
 if [ "$EDITOR" = "/usr/bin/nano" ]; then
         export EDITOR=vim
 fi
+
+force_color_prompt=yes
 
