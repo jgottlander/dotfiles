@@ -8,5 +8,3 @@
 	editor = vim
 [push]
 	default = simple
-[credential]
-	helper = "!f() { /var/home/josef/.vscode-server/bin/fee1edb8d6d72a0ddff41e5f71a671c23ed924b9/node /tmp/vscode-remote-containers-e8cf2845-a625-4520-8bcf-b0bc10263af1.js git-credential-helper $*; }; f"
