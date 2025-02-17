@@ -5,4 +5,4 @@ After=network-online.target
 
 [Service]
 Type=oneshot
-ExecStart=/usr/bin/rsync -aP --delete -e ssh %h/ josef@omv:/mnt/externa/Backup/josef/ --exclude-from=%h/rsync-homedir-excludes.txt
+ExecStart=/usr/bin/rsync -aP --delete -e ssh %h/ josef@omv:/mnt/externa/Backup/josef/ --exclude-from=%h/rsync-homedir-local.txt

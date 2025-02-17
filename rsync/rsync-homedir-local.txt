@@ -432,3 +432,5 @@ go/pkg/mod/cache
 
 # SC-Controller - socket file
 .config/scc/daemon.socket
+
+.tarball-installations
