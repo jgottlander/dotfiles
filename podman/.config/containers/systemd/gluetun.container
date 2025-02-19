@@ -4,15 +4,15 @@ Wants=network-online.target
 After=network-online.target local-fs.target vpn_stack-pod.service
 
 [Container]
-Image=qmcgaw/gluetun
+Image=qmcgaw/gluetun:v3
 Pod=vpn_stack.pod
 AddCapability=NET_ADMIN
 AddDevice=/dev/net/tun
 Volume=gluetun_data:/gluetun
 Environment=VPN_SERVICE_PROVIDER=mullvad
 Environment=VPN_TYPE=wireguard
-Environment=WIREGUARD_PRIVATE_KEY=ANn1tcpOo67I5a2VsHq1Iir02T4zukvO/bp/E9T3j1E=
-Environment=WIREGUARD_ADDRESSES=10.72.200.244/32
+Environment=WIREGUARD_PRIVATE_KEY=MFb/c20WjtDYyStSMsdwRJgLfxbZ6B4QvQUt+k7NLlo=
+Environment=WIREGUARD_ADDRESSES=10.74.239.236/32
 Environment=SERVER_CITIES=Malmö
 Environment=TZ=Europe/Stockholm
 Environment=UPDATER_PERIOD=24h
@@ -23,4 +23,4 @@ Restart=on-failure
 TimeoutStartSec=900
 
 [Install]
-WantedBy=default.target
+WantedBy=default.target qbittorrent.container radarr.container sonarr.container lidarr.container readarr.container prowlarr.container
