@@ -1,14 +1,15 @@
 [Unit]
 Description=Home Assistant Fusion
-Wants=network-online.target
-After=network-online.target
-After=local-fs.target
+Wants=network-online.target ha.container
+After=network-online.target local-fs.target ha.container
 
 [Container]
+ContainerName=ha-fusion
 Image=ghcr.io/matt8707/ha-fusion
+AutoUpdate=registry
 PublishPort=5050:5050
 Environment=TZ=Europe/Stockholm
-Environment=HASS_URL=http://192.168.1.100:8123
+Environment=HASS_URL=http://localhost:8123
 Volume=ha-fusion_data:/app/data
 Network=bridge
 

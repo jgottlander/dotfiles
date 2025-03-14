@@ -4,6 +4,7 @@ Wants=network-online.target
 After=network-online.target local-fs.target
 
 [Pod]
+PodName=vpn_stack
 PublishPort=8080:8080/tcp
 PublishPort=6881:6881/tcp
 PublishPort=6881:6881/udp
@@ -18,4 +19,4 @@ Restart=on-failure
 TimeoutStartSec=900
 
 [Install]
-WantedBy=default.target cluetun.container
+WantedBy=default.target gluetun.container

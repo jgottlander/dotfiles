@@ -1,18 +1,21 @@
 [Unit]
 Description=Home Assistant Server
 Wants=network-online.target
-After=network-online.target
-After=local-fs.target
+After=network-online.target local-fs.target
 
 [Container]
+ContainerName=home-assistant
 Image=ghcr.io/home-assistant/home-assistant:stable
-UserNS=keep-id
-GroupAdd=keep-groups
+AutoUpdate=registry
+#UserNS=keep-id
+#GroupAdd=keep-groups
 Environment=TZ=Europe/Stockholm
 Volume=ha_data:/config
 Volume=/run/dbus:/run/dbus:ro
 Network=host
 AddDevice=/dev/ttyACM0
+PodmanArgs=--privileged
+AddCapability=NET_ADMIN NET_RAW
 
 [Service]
 Restart=on-failure

@@ -1,10 +1,10 @@
 [Unit]
 Description=Lyrion Music Server
 Wants=network-online.target
-After=network-online.target
-After=local-fs.target
+After=network-online.target local-fs.target
 
 [Container]
+ContainerName=lms
 Image=lmscommunity/lyrionmusicserver
 PublishPort=9000:9000/tcp
 PublishPort=9091:9090/tcp
@@ -15,7 +15,6 @@ Environment=PGID=0
 Volume=lms_data:/config
 Volume=/mnt/media/Musik:/music
 Volume=/mnt/media/Musik/playlist:/playlist
-
 Volume=/etc/localtime:/etc/localtime:ro
 Volume=/etc/timezone:/etc/timezone:ro
 

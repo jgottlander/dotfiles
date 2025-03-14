@@ -1,9 +1,10 @@
 [Unit]
 Description=GlueTun VPN container
 Wants=network-online.target
-After=network-online.target local-fs.target vpn_stack-pod.service
+After=network-online.target local-fs.target vpn_stack.pod
 
 [Container]
+ContainerName=gluetun
 Image=qmcgaw/gluetun:v3
 Pod=vpn_stack.pod
 AddCapability=NET_ADMIN
