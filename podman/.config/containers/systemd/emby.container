@@ -4,12 +4,13 @@ After=local-fs.target network.target
 
 [Container]
 ContainerName=embyserver
-#Image=docker.io/library/embyserver:latest
-Image=emby/embyserver:latest
-#AutoUpdate=registry
+Image=lscr.io/linuxserver/emby:latest
+#Image=emby/embyserver:latest
+AutoUpdate=registry
 Network=host
-Environment=UID=0
-Environment=GID=0
+Environment=PUID=0
+Environment=PGID=0
+Environment=TZ=Europe/Stockholm
 Volume=embyserver_data:/config
 Volume=/mnt/media:/media
 Volume=/mnt/backup/emby:/backup
