@@ -8,6 +8,8 @@ Image=lscr.io/linuxserver/emby:latest
 #Image=emby/embyserver:latest
 AutoUpdate=registry
 Network=host
+#UserNS=keep-id
+#GroupAdd=keep-groups
 Environment=PUID=0
 Environment=PGID=0
 Environment=TZ=Europe/Stockholm
