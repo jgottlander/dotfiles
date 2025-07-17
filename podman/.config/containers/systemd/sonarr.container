@@ -1,16 +1,15 @@
 [Unit]
 Description=Sonarr container
 Wants=network-online.target
-After=network-online.target local-fs.target gluetun.container
+After=network-online.target local-fs.target
 
 [Container]
 ContainerName=sonarr
 Image=lscr.io/linuxserver/sonarr:latest
 AutoUpdate=registry
+UserNS=keep-id
+GroupAdd=keep-groups
 Pod=vpn_stack.pod
-Environment=PUID=0
-Environment=PGID=0
-Environment=TZ=Europe/Stockholm
 Volume=sonarr_data:/config
 Volume=/mnt/media/Serier:/tv
 Volume=/mnt/externa/Nedladdningar:/downloads

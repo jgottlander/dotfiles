@@ -1,16 +1,15 @@
 [Unit]
 Description=qBittorrent container
 Wants=network-online.target
-After=network-online.target local-fs.target gluetun.container
+After=network-online.target local-fs.target
 
 [Container]
 ContainerName=qbittorrent
 Image=lscr.io/linuxserver/qbittorrent:latest
 AutoUpdate=registry
+UserNS=keep-id
+GroupAdd=keep-groups
 Pod=vpn_stack.pod
-Environment=PUID=0
-Environment=PGID=0
-Environment=TZ=Europe/Stockholm
 Environment=WEBUI_PORT=8080
 Environment=TORRENTIG_PORT=6881
 Volume=qbittorrent_data:/config

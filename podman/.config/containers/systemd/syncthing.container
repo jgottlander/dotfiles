@@ -5,15 +5,12 @@ After=network-online.target local-fs.target
 
 [Container]
 ContainerName=syncthing
-#Image=syncthing/syncthing:latest
-Image=lscr.io/linuxserver/syncthing:latest
+Image=docker.io/syncthing/syncthing:latest
 AutoUpdate=registry
-Environment=PUID=0
-Environment=PGID=0
-Environment=TZ=Europe/Stockholm
-#UserNS=host
-Volume=syncthing_data:/config
-Volume=/mnt/externa/Data:/data:rw
+UserNS=keep-id
+GroupAdd=keep-groups
+Volume=syncthing_data:/var/syncthing
+Volume=/mnt/externa/Data:/data
 Network=host
 
 [Service]

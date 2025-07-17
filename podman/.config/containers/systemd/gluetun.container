@@ -1,11 +1,12 @@
 [Unit]
 Description=GlueTun VPN container
 Wants=network-online.target
-After=network-online.target local-fs.target vpn_stack.pod
+After=network-online.target local-fs.target
 
 [Container]
 ContainerName=gluetun
-Image=qmcgaw/gluetun:v3
+Image=docker.io/qmcgaw/gluetun:v3
+AutoUpdate=registry
 Pod=vpn_stack.pod
 AddCapability=NET_ADMIN
 AddDevice=/dev/net/tun
@@ -24,4 +25,4 @@ Restart=on-failure
 TimeoutStartSec=900
 
 [Install]
-WantedBy=default.target qbittorrent.container radarr.container sonarr.container lidarr.container readarr.container prowlarr.container
+WantedBy=default.target

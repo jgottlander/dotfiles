@@ -1,5 +1,5 @@
 [Unit]
-Description=Run weekly backups
+Description=Run daily backups
 
 [Timer]
 OnCalendar=daily

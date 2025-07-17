@@ -1,0 +1,8 @@
+[Unit]
+Description=Back up podman volumes
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/rsync -aP --delete %h/.local/share/containers/storage/volumes /mnt/externa/Backup/podman/

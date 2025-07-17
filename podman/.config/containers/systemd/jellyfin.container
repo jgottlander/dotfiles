@@ -1,0 +1,24 @@
+[Unit]
+Description=Jellyfin Media Server
+After=local-fs.target network.target
+
+[Container]
+ContainerName=jellyfin
+Image=docker.io/jellyfin/jellyfin:latest
+AutoUpdate=registry
+Network=host
+UserNS=keep-id
+GroupAdd=keep-groups
+Volume=jellyfin_data:/config
+Volume=jellyfin_cache:/cache
+Volume=/mnt/media:/media
+Volume=/mnt/backup/jellyfin:/backup
+AddDevice=/dev/dri
+
+[Service]
+Restart=on-failure
+TimeoutStartSec=900
+SuccessExitStatus=0 143
+
+[Install]
+WantedBy=default.target

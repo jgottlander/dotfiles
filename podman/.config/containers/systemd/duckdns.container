@@ -6,9 +6,6 @@ After=network.target
 ContainerName=duckdns
 Image=lscr.io/linuxserver/duckdns:latest
 AutoUpdate=registry
-#Timezone=local
-#Notify=conmon
-#CgroupsMode=enabled
 Environment=SUBDOMAINS=jgottlander
 Environment=TOKEN=ed06a841-5fbc-4e6f-b2b8-76a343f69c10
 Environment=UPDATE_IP=ipv4

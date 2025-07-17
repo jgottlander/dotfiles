@@ -9,7 +9,6 @@ Image=ghcr.io/home-assistant/home-assistant:stable
 AutoUpdate=registry
 UserNS=keep-id
 GroupAdd=keep-groups
-Environment=TZ=Europe/Stockholm
 Volume=ha_data:/config
 Volume=/run/dbus:/run/dbus:ro
 Network=host

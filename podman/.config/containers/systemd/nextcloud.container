@@ -1,0 +1,25 @@
+[Unit]
+Description=Nextcloud Container
+After=local-fs.target network.target
+Requires=podman.socket
+
+[Container]
+ContainerName=nextcloud
+Image=docker.io/library/nextcloud:stable-fpm
+AutoUpdate=registry
+Pod=nextcloud.pod
+Volume=nextcloud_data:/var/www/html
+AddDevice=/dev/dri
+
+Environment=MYSQL_HOST=mariadb
+Environment=MYSQL_DATABASE=nextcloud
+Environment=MYSQL_USER=nextcloud
+Environment=MYSQL_PASSWORD=nextcloud
+Environment=NEXTCLOUD_DATA_DIR=/mnt/externa/Data/nextcloud
+
+[Service]
+Restart=on-failure
+TimeoutStartSec=900
+
+[Install]
+WantedBy=default.target multi-user.target

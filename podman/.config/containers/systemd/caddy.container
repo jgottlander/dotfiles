@@ -1,0 +1,22 @@
+[Unit]
+Description=Caddy webserver
+After=network.target
+
+[Container]
+ContainerName=caddy
+Image=docker.io/library/caddy:latest
+#Image=localhost/caddy-duckdns
+AutoUpdate=registry
+AddCapability=CAP_NET_ADMIN
+Pod=nextcloud.pod
+
+Volume=./Caddyfile:/etc/caddy/Caddyfile
+Volume=caddy_data:/data
+Volume=nextcloud_data:/var/www/html
+
+[Service]
+Restart=on-failure
+TimeoutStartSec=900
+
+[Install]
+WantedBy=default.target multi-user.target

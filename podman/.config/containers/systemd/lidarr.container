@@ -1,16 +1,15 @@
 [Unit]
 Description=Lidarr container
 Wants=network-online.target
-After=network-online.target local-fs.target gluetun.container
+After=network-online.target local-fs.target
 
 [Container]
 ContainerName=lidarr
 Image=lscr.io/linuxserver/lidarr:latest
 AutoUpdate=registry
+UserNS=keep-id
+GroupAdd=keep-groups
 Pod=vpn_stack.pod
-Environment=PUID=0
-Environment=PGID=0
-Environment=TZ=Europe/Stockholm
 Volume=lidarr_data:/config
 Volume=/mnt/media/Musik:/music
 Volume=/mnt/externa/Nedladdningar:/downloads

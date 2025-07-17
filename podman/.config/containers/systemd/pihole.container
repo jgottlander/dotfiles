@@ -1,0 +1,26 @@
+[Unit]
+Description=Pi-hole Server
+After=local-fs.target network.target
+
+[Container]
+ContainerName=pihole
+Image=docker.io/pihole/pihole:latest
+AutoUpdate=registry
+UserNS=keep-id
+GroupAdd=keep-groups
+PublishPort=53:53/tcp
+PublishPort=53:53/udp
+PublishPort=8081:80
+AddCapability=NET_ADMIN
+Environment=TZ=Europe/Stockholm
+Environment=FTLCONF_webserver_api_password=''
+Environment=FTLCONF_dns_listeningMode='all'
+Environment=FTLCONF_dns_upstreams="1.1.1.1;1.0.0.1"
+Volume=pihole_data:/etc/pihole
+
+[Service]
+Restart=on-failure
+TimeoutStartSec=900
+
+[Install]
+WantedBy=default.target

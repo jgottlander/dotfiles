@@ -19,4 +19,4 @@ Restart=on-failure
 TimeoutStartSec=900
 
 [Install]
-WantedBy=default.target gluetun.container
+WantedBy=default.target

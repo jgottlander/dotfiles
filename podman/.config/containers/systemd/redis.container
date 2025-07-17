@@ -1,0 +1,20 @@
+[Unit]
+Description=Redis Cache Server
+After=network.target
+
+[Container]
+ContainerName=redis
+Image=docker.io/library/redis:latest
+AutoUpdate=registry
+Pod=nextcloud.pod
+UserNS=keep-id
+GroupAdd=keep-groups
+Volume=redis_data:/data
+Exec=redis-server --requirepass nextcloud
+
+[Service]
+Restart=on-failure
+TimeoutStartSec=900
+
+[Install]
+WantedBy=default.target multi-user.target

@@ -1,0 +1,22 @@
+[Unit]
+Description=MariaDB for NextCloud
+After=local-fs.target network.target
+Requires=podman.socket
+
+[Container]
+ContainerName=mariadb
+Image=docker.io/library/mariadb:11.4
+AutoUpdate=registry
+Volume=mariadb_data:/var/lib/mysql
+Pod=nextcloud.pod
+Environment=MYSQL_DATABASE=nextcloud
+Environment=MYSQL_USER=nextcloud
+Environment=MYSQL_PASSWORD=nextcloud
+Environment=MYSQL_ROOT_PASSWORD=nextcloud
+
+[Service]
+Restart=on-failure
+TimeoutStartSec=900
+
+[Install]
+WantedBy=default.target multi-user.target

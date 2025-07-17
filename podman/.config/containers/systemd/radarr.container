@@ -1,16 +1,15 @@
 [Unit]
 Description=Radarr container
 Wants=network-online.target
-After=network-online.target local-fs.target gluetun.container
+After=network-online.target local-fs.target
 
 [Container]
 ContainerName=radarr
 Image=lscr.io/linuxserver/radarr:latest
 AutoUpdate=registry
 Pod=vpn_stack.pod
-Environment=PUID=0
-Environment=PGID=0
-Environment=TZ=Europe/Stockholm
+UserNS=keep-id
+GroupAdd=keep-groups
 Volume=radarr_data:/config
 Volume=/mnt/media/Filmer:/movies
 Volume=/mnt/externa/Nedladdningar:/downloads

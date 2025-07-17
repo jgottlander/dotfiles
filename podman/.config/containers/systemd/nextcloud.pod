@@ -1,0 +1,16 @@
+[Unit]
+Description=NextCloud Stack
+Wants=network-online.target
+After=network-online.target local-fs.target
+
+[Pod]
+PodName=nextcloud
+PublishPort=80:80
+PublishPort=443:443
+
+[Service]
+Restart=on-failure
+TimeoutStartSec=900
+
+[Install]
+WantedBy=default.target multi-user.target
