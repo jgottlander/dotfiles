@@ -6,14 +6,17 @@ After=local-fs.target network.target
 ContainerName=jellyfin
 Image=docker.io/jellyfin/jellyfin:latest
 AutoUpdate=registry
-Network=host
 UserNS=keep-id
-GroupAdd=keep-groups
+User=1000:1000
+PublishPort=8096:8096/tcp
+IP=10.89.1.6
+HostName=retropie
+Network=jellyfin-bridge.network
 Volume=jellyfin_data:/config
 Volume=jellyfin_cache:/cache
 Volume=/mnt/media:/media
 Volume=/mnt/backup/jellyfin:/backup
-AddDevice=/dev/dri
+AddDevice=/dev/dri:/dev/dri
 
 [Service]
 Restart=on-failure

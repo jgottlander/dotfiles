@@ -1,18 +1,22 @@
 [Unit]
-Description=Sonarr container
+Description=Bazaar container
 Wants=network-online.target
 After=network-online.target local-fs.target
 
 [Container]
-ContainerName=sonarr
-Image=lscr.io/linuxserver/sonarr:latest
+ContainerName=bazarr
+Image=lscr.io/linuxserver/bazarr:latest
 AutoUpdate=registry
+Pod=vpn_stack.pod
 UserNS=keep-id
 GroupAdd=keep-groups
-Pod=vpn_stack.pod
-Volume=sonarr_data:/config
+#User=1000:1000
+#Environment=PUID=0
+#Environment=PGID=0
+Environment=TZ=Europe/Stockholm
+Volume=bazaar_data:/config
+Volume=/mnt/media/Filmer:/movies
 Volume=/mnt/media/Serier:/tv
-Volume=/mnt/externa/Nedladdningar:/downloads
 
 [Service]
 Restart=on-failure

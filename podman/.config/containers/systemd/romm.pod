@@ -1,16 +1,16 @@
 [Unit]
-Description=NextCloud Stack
+Description=RomM Stack
 Wants=network-online.target
 After=network-online.target local-fs.target
 
 [Pod]
-PodName=nextcloud
-PublishPort=80:80
-PublishPort=443:443
+PodName=romm
+PublishPort=8085:8080/tcp
+PublishPort=3306:3306/tcp
 
 [Service]
 Restart=on-failure
 TimeoutStartSec=900
 
 [Install]
-WantedBy=default.target multi-user.target 
+WantedBy=default.target

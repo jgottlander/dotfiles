@@ -16,7 +16,6 @@ Environment=VPN_TYPE=wireguard
 Environment=WIREGUARD_PRIVATE_KEY=MFb/c20WjtDYyStSMsdwRJgLfxbZ6B4QvQUt+k7NLlo=
 Environment=WIREGUARD_ADDRESSES=10.74.239.236/32
 Environment=SERVER_CITIES=Malmö
-Environment=TZ=Europe/Stockholm
 Environment=UPDATER_PERIOD=24h
 Environment=FIREWALL_VPN_INPUT_PORTS=6881
 

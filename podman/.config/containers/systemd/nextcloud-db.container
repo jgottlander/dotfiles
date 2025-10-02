@@ -4,11 +4,13 @@ After=local-fs.target network.target
 Requires=podman.socket
 
 [Container]
-ContainerName=mariadb
+ContainerName=nextcloud-db
 Image=docker.io/library/mariadb:11.4
 AutoUpdate=registry
-Volume=mariadb_data:/var/lib/mysql
+Volume=nextcloud-db_data:/var/lib/mysql
 Pod=nextcloud.pod
+UserNS=keep-id
+GroupAdd=keep-groups
 Environment=MYSQL_DATABASE=nextcloud
 Environment=MYSQL_USER=nextcloud
 Environment=MYSQL_PASSWORD=nextcloud

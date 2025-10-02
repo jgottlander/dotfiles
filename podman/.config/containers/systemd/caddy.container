@@ -1,18 +1,19 @@
 [Unit]
 Description=Caddy webserver
-After=network.target
+After=network.target local-fs.target
 
 [Container]
 ContainerName=caddy
 Image=docker.io/library/caddy:latest
-#Image=localhost/caddy-duckdns
 AutoUpdate=registry
-AddCapability=CAP_NET_ADMIN
 Pod=nextcloud.pod
+AddCapability=CAP_NET_ADMIN
+Environment=EMAIL=josef.gottlander@gmail.com
 
 Volume=./Caddyfile:/etc/caddy/Caddyfile
 Volume=caddy_data:/data
 Volume=nextcloud_data:/var/www/html
+Notify=true
 
 [Service]
 Restart=on-failure

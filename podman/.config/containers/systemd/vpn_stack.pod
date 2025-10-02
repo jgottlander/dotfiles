@@ -5,14 +5,16 @@ After=network-online.target local-fs.target
 
 [Pod]
 PodName=vpn_stack
-PublishPort=8080:8080/tcp
+PublishPort=8081:8081/tcp
 PublishPort=6881:6881/tcp
-PublishPort=6881:6881/udp
-PublishPort=8686:8686
-PublishPort=9696:9696
-PublishPort=7878:7878
-PublishPort=8787:8787
-PublishPort=8989:8989
+PublishPort=8989:8989/tcp
+PublishPort=9696:9696/tcp
+PublishPort=8686:8686/tcp
+PublishPort=7878:7878/tcp
+PublishPort=5055:5055/tcp
+PublishPort=6767:6767/tcp
+PublishPort=8978:8978/tcp
+Network=jellyfin-bridge.network
 
 [Service]
 Restart=on-failure

@@ -1,0 +1,25 @@
+[Unit]
+Description=Immich server
+Wants=network-online.target
+After=network-online.target local-fs.target
+
+[Container]
+ContainerName=immich-server
+Image=ghcr.io/immich-app/immich-server:release
+AutoUpdate=registry
+UserNS=keep-id
+GroupAdd=keep-groups
+Pod=immich.pod
+
+EnvironmentFile=./immich.env
+
+Volume=/mnt/externa/Data/immich:/data
+Volume=/etc/localtime:/etc/localtime:ro
+AddDevice=/dev/dri:/dev/dri
+
+[Service]
+Restart=on-failure
+TimeoutStartSec=900
+
+[Install]
+WantedBy=default.target

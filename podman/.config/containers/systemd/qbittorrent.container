@@ -10,11 +10,10 @@ AutoUpdate=registry
 UserNS=keep-id
 GroupAdd=keep-groups
 Pod=vpn_stack.pod
-Environment=WEBUI_PORT=8080
+Environment=WEBUI_PORT=8081
 Environment=TORRENTIG_PORT=6881
 Volume=qbittorrent_data:/config
 Volume=/mnt/externa/Nedladdningar:/downloads
-Network=gluetun.container
 
 [Service]
 Restart=on-failure

@@ -1,0 +1,22 @@
+[Unit]
+Description=Immich Machine Learning
+Wants=network-online.target
+After=network-online.target local-fs.target
+
+[Container]
+ContainerName=immich-ml
+Image=ghcr.io/immich-app/immich-machine-learning:release
+AutoUpdate=registry
+#UserNS=keep-id
+#GroupAdd=keep-groups
+Pod=immich.pod
+Volume=immich-ml_data:/cache
+Volume=/dev/bus/usb:/dev/bus/usb
+AddDevice=/dev/dri:/dev/dri
+
+[Service]
+Restart=on-failure
+TimeoutStartSec=900
+
+[Install]
+WantedBy=default.target

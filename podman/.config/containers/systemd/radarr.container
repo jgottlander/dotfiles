@@ -13,7 +13,6 @@ GroupAdd=keep-groups
 Volume=radarr_data:/config
 Volume=/mnt/media/Filmer:/movies
 Volume=/mnt/externa/Nedladdningar:/downloads
-Network=gluetun.container
 
 [Service]
 Restart=on-failure

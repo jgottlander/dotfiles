@@ -8,14 +8,16 @@ ContainerName=nextcloud
 Image=docker.io/library/nextcloud:stable-fpm
 AutoUpdate=registry
 Pod=nextcloud.pod
+UserNS=keep-id
+GroupAdd=keep-groups
 Volume=nextcloud_data:/var/www/html
-AddDevice=/dev/dri
+AddDevice=/dev/dri:/dev/dri
 
-Environment=MYSQL_HOST=mariadb
+Environment=MYSQL_HOST=nextcloud-db
 Environment=MYSQL_DATABASE=nextcloud
 Environment=MYSQL_USER=nextcloud
 Environment=MYSQL_PASSWORD=nextcloud
-Environment=NEXTCLOUD_DATA_DIR=/mnt/externa/Data/nextcloud
+#Environment=NEXTCLOUD_DATA_DIR=/mnt/externa/Data/nextcloud
 
 [Service]
 Restart=on-failure

@@ -1,0 +1,25 @@
+[Unit]
+Description=Immich Redis server
+Wants=network-online.target
+After=network-online.target local-fs.target
+
+[Container]
+ContainerName=immich-redis
+Image=docker.io/valkey/valkey:8-bookworm@sha256:fea8b3e67b15729d4bb70589eb03367bab9ad1ee89c876f54327fc7c6e618571
+Pod=immich.pod
+UserNS=keep-id
+GroupAdd=keep-groups
+
+HealthCmd=redis-cli ping || exit 1
+HealthInterval=10s
+HealthTimeout=5s
+HealthRetries=3
+
+Volume=immich-redis_data:/data
+
+[Service]
+Restart=on-failure
+TimeoutStartSec=900
+
+[Install]
+WantedBy=default.target immich-server.container

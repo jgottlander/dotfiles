@@ -7,8 +7,9 @@ ContainerName=embyserver
 Image=lscr.io/linuxserver/emby:latest
 #Image=emby/embyserver:latest
 AutoUpdate=registry
-Network=host
-Environment=TZ=Europe/Stockholm
+UserNS=keep-id
+User=1000:1000
+PublishPort=8096:8096/tcp
 Volume=embyserver_data:/config
 Volume=/mnt/media:/media
 Volume=/mnt/backup/emby:/backup

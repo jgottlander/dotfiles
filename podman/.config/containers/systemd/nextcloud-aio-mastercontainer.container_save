@@ -1,0 +1,37 @@
+[Unit]
+Description=Nextcloud AIO container
+After=local-fs.target network.target
+
+[Container]
+ContainerName=nextcloud-aio-mastercontainer
+Image=ghcr.io/nextcloud-releases/all-in-one:latest
+AutoUpdate=registry
+UserNS=keep-id
+GroupAdd=keep-groups
+#User=1000:1000
+AddDevice=/dev/dri
+RunInit=true
+Network=bridge
+
+#PublishPort=80:80
+#PublishPort=443:443
+PublishPort=8080:8080
+#PublishPort=8443:8443
+
+Volume=nextcloud_aio_mastercontainer:/mnt/docker-aio-config
+Volume=/run/user/1000/podman/podman.sock:/var/run/docker.sock:ro
+
+PodmanArgs="--sig-proxy=false"
+
+Environment=WATCHTOWER_DOCKER_SOCKET_PATH=/var/run/docker.sock:ro
+Environment=APACHE_PORT=11000
+Environment=APACHE_IP_BINDING=0.0.0.0
+Environment=APACHE_ADDITIONAL_NETWORK=""
+Environment=SKIP_DOMAIN_VALIDATION=false
+
+[Service]
+Restart=on-failure
+TimeoutStartSec=900
+
+[Install]
+WantedBy=default.target multi-user.target

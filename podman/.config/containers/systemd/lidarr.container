@@ -13,7 +13,6 @@ Pod=vpn_stack.pod
 Volume=lidarr_data:/config
 Volume=/mnt/media/Musik:/music
 Volume=/mnt/externa/Nedladdningar:/downloads
-Network=gluetun.container
 
 [Service]
 Restart=on-failure

@@ -1,0 +1,22 @@
+[Unit]
+Description=Glance container
+After=network.target local-fs.target
+
+[Container]
+ContainerName=glance
+Image=docker.io/glanceapp/glance:latest
+AutoUpdate=registry
+PublishPort=8082:8080
+#Network=host
+
+Volume=glance_data:/app/config
+Volume=glance_assets:/app/assets
+Volume=/run/user/1000/podman/podman.sock:/var/run/docker.sock:ro
+Environment=MY_SECRET_TOKEN=123456
+
+[Service]
+Restart=on-failure
+TimeoutStartSec=900
+
+[Install]
+WantedBy=default.target multi-user.target

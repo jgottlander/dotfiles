@@ -1,0 +1,23 @@
+[Unit]
+Description=Navidrome Music Server
+After=local-fs.target network.target
+
+[Container]
+ContainerName=navidrome
+Image=docker.io/deluan/navidrome:latest
+AutoUpdate=registry
+UserNS=keep-id
+User=1000:1000
+PublishPort=4533:4533
+
+Volume=navidrome_data:/data
+Volume=/mnt/media/Musik:/music
+
+Environment=ND_LOGLEVEL=info
+
+[Service]
+Restart=on-failure
+TimeoutStartSec=900
+
+[Install]
+WantedBy=default.target
