@@ -6,7 +6,6 @@ After=network-online.target local-fs.target
 [Pod]
 PodName=romm
 PublishPort=8085:8080/tcp
-PublishPort=3306:3306/tcp
 
 [Service]
 Restart=on-failure

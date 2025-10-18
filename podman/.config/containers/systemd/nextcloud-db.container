@@ -5,7 +5,7 @@ Requires=podman.socket
 
 [Container]
 ContainerName=nextcloud-db
-Image=docker.io/library/mariadb:11.4
+Image=docker.io/library/mariadb:10.11
 AutoUpdate=registry
 Volume=nextcloud-db_data:/var/lib/mysql
 Pod=nextcloud.pod

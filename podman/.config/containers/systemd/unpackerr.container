@@ -1,0 +1,28 @@
+[Unit]
+Description=Unpackerr container
+Wants=network-online.target
+After=network-online.target local-fs.target
+
+[Container]
+ContainerName=unpackerr
+Image=docker.io/golift/unpackerr
+AutoUpdate=registry
+UserNS=keep-id
+GroupAdd=keep-groups
+User=1000:1000
+Pod=vpn_stack.pod
+Volume=/mnt/externa/Nedladdningar:/downloads
+
+Environment=UN_LOG_FILE=/downloads/unpackerr.log
+Environment=UN_SONARR_0_URL=http://sonarr:8989
+Environment=UN_SONARR_0_API_KEY=ff4bd711e4f740c19bebb4ded1179c28
+Environment=UN_RADARR_0_URL=http://radarr:7878
+Environment=UN_RADARR_0_API_KEY=df28a057ead54840bb4ab3921e9ad528
+Environment=UN_WEBSERVER_METRICS=true
+
+[Service]
+Restart=on-failure
+TimeoutStartSec=900
+
+[Install]
+WantedBy=default.target

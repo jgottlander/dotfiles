@@ -1,0 +1,27 @@
+[Unit]
+Description=Nextcloud HaRP Container
+After=local-fs.target network.target
+Requires=podman.socket
+
+[Container]
+ContainerName=appapi-harp
+Image=ghcr.io/nextcloud/nextcloud-appapi-harp:release
+AutoUpdate=registry
+Pod=nextcloud.pod
+UserNS=keep-id
+GroupAdd=keep-groups
+
+Volume=/run/user/1000/podman/podman.sock:/var/run/docker.sock:ro
+Volume=./certs:/certs
+
+Environment=HP_SHARED_KEY=RFtdgHUp88uZLlTxFzd7
+Environment=NC_INSTANCE_URL=https://nextcloud.gottlander.eu
+Environment=HP_EXAPPS_ADDRESS=192.168.1.100:8780
+
+
+[Service]
+Restart=on-failure
+TimeoutStartSec=900
+
+[Install]
+#WantedBy=default.target multi-user.target

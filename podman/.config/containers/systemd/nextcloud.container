@@ -1,23 +1,26 @@
 [Unit]
 Description=Nextcloud Container
-After=local-fs.target network.target
+After=local-fs.target network.target nextcloud-db.service
 Requires=podman.socket
 
 [Container]
 ContainerName=nextcloud
-Image=docker.io/library/nextcloud:stable-fpm
+Image=docker.io/library/nextcloud:fpm
 AutoUpdate=registry
 Pod=nextcloud.pod
 UserNS=keep-id
 GroupAdd=keep-groups
 Volume=nextcloud_data:/var/www/html
+Volume=/mnt/externa/Data/nextcloud:/var/www/html/data
 AddDevice=/dev/dri:/dev/dri
 
 Environment=MYSQL_HOST=nextcloud-db
 Environment=MYSQL_DATABASE=nextcloud
 Environment=MYSQL_USER=nextcloud
 Environment=MYSQL_PASSWORD=nextcloud
-#Environment=NEXTCLOUD_DATA_DIR=/mnt/externa/Data/nextcloud
+#Environment=REDIS_HOST=nextcloud-redis
+#Environment=REDIS_HOST_PASSWORD=nextcloud
+Environment=NEXTCLOUD_TRUSTED_DOMAINS=nextcloud.gottlander.eu
 
 [Service]
 Restart=on-failure

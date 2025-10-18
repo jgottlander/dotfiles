@@ -1,18 +1,15 @@
 [Unit]
-Description=qBittorrent container
+Description=Pyload container
 Wants=network-online.target
 After=network-online.target local-fs.target gluetun.service
 
 [Container]
-ContainerName=qbittorrent
-Image=lscr.io/linuxserver/qbittorrent:latest
+ContainerName=pyload-ng
+Image=lscr.io/linuxserver/pyload-ng:latest
 AutoUpdate=registry
-UserNS=keep-id
-GroupAdd=keep-groups
+User=0
 Pod=vpn_stack.pod
-Environment=WEBUI_PORT=8081
-Environment=TORRENTIG_PORT=6881
-Volume=qbittorrent_data:/config
+Volume=pyload_data:/config
 Volume=/mnt/externa/Nedladdningar:/downloads
 
 [Service]
