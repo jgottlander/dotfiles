@@ -1,0 +1,22 @@
+[Unit]
+Description=Bubble UPnP Server
+After=local-fs.target network.target
+
+[Container]
+ContainerName=bubbleupnpserver
+Image=docker.io/bubblesoftapps/bubbleupnpserver
+AutoUpdate=registry
+UserNS=keep-id
+User=1000:1000
+Network=host
+
+Volume=bubbleupnp_data:/data
+Volume=/mnt/media:/media
+AddDevice=/dev/dri:/dev/dri
+
+[Service]
+Restart=on-failure
+TimeoutStartSec=900
+
+[Install]
+WantedBy=default.target
