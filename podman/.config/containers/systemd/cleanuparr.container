@@ -1,0 +1,21 @@
+[Unit]
+Description=Cleanuparr
+After=local-fs.target network.target
+
+[Container]
+ContainerName=cleanuparr
+Image=ghcr.io/cleanuparr/cleanuparr:latest
+AutoUpdate=registry
+Pod=vpn_stack.pod
+Volume=cleanuparr_data:/config
+Environment=PORT=11011
+Environment=PUID=0
+Environment=PGID=0
+Environment=TZ=Europe/Stockholm
+
+[Service]
+Restart=on-failure
+TimeoutStartSec=900
+
+[Install]
+WantedBy=default.target

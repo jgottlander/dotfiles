@@ -1,0 +1,23 @@
+[Unit]
+Description=Collabora Container
+After=local-fs.target network.target
+Requires=podman.socket
+
+[Container]
+ContainerName=collabora
+Image=docker.io/collabora/code
+AutoUpdate=registry
+Pod=nextcloud.pod
+#UserNS=keep-id
+#GroupAdd=keep-groups
+
+Environment=aliasgroup1=https://office.gottlander.eu
+Environment=dictionaries="en_GB sv_SE da_DK"
+Environment="extra_params=--o:ssl.enable=false --o:user_interface.use_integration_theme=false"
+
+[Service]
+Restart=on-failure
+TimeoutStartSec=900
+
+[Install]
+WantedBy=default.target multi-user.target

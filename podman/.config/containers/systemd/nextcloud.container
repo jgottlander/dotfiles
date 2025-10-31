@@ -18,9 +18,8 @@ Environment=MYSQL_HOST=nextcloud-db
 Environment=MYSQL_DATABASE=nextcloud
 Environment=MYSQL_USER=nextcloud
 Environment=MYSQL_PASSWORD=nextcloud
-#Environment=REDIS_HOST=nextcloud-redis
-#Environment=REDIS_HOST_PASSWORD=nextcloud
 Environment=NEXTCLOUD_TRUSTED_DOMAINS=nextcloud.gottlander.eu
+Environment=OVERWRITEPROTOCOL=https
 
 [Service]
 Restart=on-failure

@@ -20,7 +20,7 @@ Exec=-c 'opencloud init || true; opencloud server'
 Environment=IDM_ADMIN_PASSWORD=admin
 Environment=OC_INSECURE=true
 Environment=PROXY_HTTP_ADDR=0.0.0.0:9200
-Environment=OC_URL=https://192.168.1.100:9200
+Environment=OC_URL=https://retropie.local:9200
 
 
 [Service]
@@ -28,4 +28,4 @@ Restart=on-failure
 TimeoutStartSec=900
 
 [Install]
-WantedBy=default.target multi-user.target
+#WantedBy=default.target multi-user.target

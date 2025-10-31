@@ -1,0 +1,24 @@
+[Unit]
+Description=AdGuard Home
+Wants=network-online.target
+After=network-online.target local-fs.target
+
+[Container]
+ContainerName=adguardhome
+Image=docker.io/adguard/adguardhome
+AutoUpdate=registry
+UserNS=keep-id
+GroupAdd=keep-groups
+Volume=adguard_data:/opt/adguardhome/work
+Volume=adguard_conf:/opt/adguardhome/conf
+PublishPort=3000:3000/tcp
+PublishPort=53:53/tcp
+PublishPort=53:53/udp
+AddCapability=NET_BIND_SERVICE
+
+[Service]
+Restart=on-failure
+TimeoutStartSec=900
+
+[Install]
+WantedBy=default.target

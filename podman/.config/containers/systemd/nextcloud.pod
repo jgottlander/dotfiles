@@ -7,8 +7,7 @@ After=network-online.target local-fs.target
 PodName=nextcloud
 PublishPort=80:80
 PublishPort=443:443
-PublishPort=8780:8780
-PublishPort=8782:8782
+PublishPort=9980:9980
 
 [Service]
 Restart=on-failure
