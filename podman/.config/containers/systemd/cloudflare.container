@@ -8,6 +8,9 @@ After=local-fs.target
 ContainerName=cloudflare
 Image=docker.io/cloudflare/cloudflared:latest
 AutoUpdate=registry
+UserNS=keep-id
+GroupAdd=keep-groups
+User=1000:1000
 Network=host
 Secret=cloudflare_tunnel_token,type=env,target=TUNNEL_TOKEN
 Exec=tunnel --no-autoupdate run

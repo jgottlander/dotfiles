@@ -1,7 +1,5 @@
 [Unit]
 Description=Backs up home to externa
-Wants=network-online.target
-After=network-online.target
 
 [Service]
 Type=oneshot
