@@ -1,0 +1,15 @@
+[Unit]
+Description=
+After=network-online.target local-fs.target
+
+[Container]
+ContainerName=
+Image=
+AutoUpdate=registry
+
+[Service]
+Restart=always
+TimeoutStartSec=900
+
+[Install]
+WantedBy=multi-user.target default.target

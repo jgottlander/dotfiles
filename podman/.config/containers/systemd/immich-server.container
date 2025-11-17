@@ -1,7 +1,7 @@
 [Unit]
 Description=Immich server
 Wants=network-online.target
-After=network-online.target local-fs.target
+After=network-online.target local-fs.target immich-db.service immich-redis.service
 
 [Container]
 ContainerName=immich-server

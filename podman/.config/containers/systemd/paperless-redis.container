@@ -1,0 +1,19 @@
+[Unit]
+Description=Paperless Redis
+After=network-online.target local-fs.target
+
+[Container]
+ContainerName=paperless-redis
+Image=docker.io/library/redis:8
+AutoUpdate=registry
+Volume=paperless-redis_data:/data
+Pod=paperless.pod
+UserNS=keep-id
+GroupAdd=keep-groups
+
+[Service]
+Restart=always
+TimeoutStartSec=900
+
+[Install]
+WantedBy=multi-user.target default.target

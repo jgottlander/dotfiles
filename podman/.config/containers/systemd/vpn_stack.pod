@@ -14,7 +14,6 @@ PublishPort=8686:8686
 PublishPort=7878:7878
 PublishPort=5055:5055
 PublishPort=6767:6767
-PublishPort=8978:8978
 PublishPort=5656:5656
 PublishPort=8000:8000
 PublishPort=11011:11011

@@ -10,3 +10,7 @@
 	default = simple
 [advice]
 	detachedHead = false
+[http]
+	lowSpeedLimit = 1000
+	lowSpeedTime = 60
+	postBuffer = 524288000

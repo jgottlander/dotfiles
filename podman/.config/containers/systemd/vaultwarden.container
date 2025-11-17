@@ -1,0 +1,20 @@
+[Unit]
+Description=Vaultwarden
+After=network-online.target local-fs.target
+
+[Container]
+ContainerName=vaultwarden
+Image=docker.io/vaultwarden/server:latest
+AutoUpdate=registry
+PublishPort=8888:80
+Volume=vaultwarden_data:/data
+#UserNS=keep-id
+#GroupAdd=keep-groups
+#User=1000:1000
+
+[Service]
+Restart=always
+TimeoutStartSec=900
+
+[Install]
+WantedBy=multi-user.target default.target

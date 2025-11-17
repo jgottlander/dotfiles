@@ -1,0 +1,22 @@
+[Unit]
+Description=Recyclarr
+After=network-online.target local-fs.target
+
+[Container]
+ContainerName=recyclarr
+Image=ghcr.io/recyclarr/recyclarr
+AutoUpdate=registry
+UserNS=keep-id
+GroupAdd=keep-groups
+Volume=recyclarr_data:/config
+Environment=TZ=Europe/Stockholm
+Environment=RECYCLARR_CREATE_CONFIG=true
+User=1000:1000
+Network=host
+
+[Service]
+Restart=always
+TimeoutStartSec=900
+
+[Install]
+WantedBy=multi-user.target default.target

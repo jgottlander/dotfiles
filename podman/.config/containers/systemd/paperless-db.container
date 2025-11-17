@@ -1,0 +1,22 @@
+[Unit]
+Description=PostgreSQL for Paperless
+After=network-online.target local-fs.target
+
+[Container]
+ContainerName=paperless-db
+Image=docker.io/library/postgres:18
+AutoUpdate=registry
+Pod=paperless.pod
+UserNS=keep-id
+GroupAdd=keep-groups
+Volume=paperless-db_data:/var/lib/postgresql
+Environment=POSTGRES_DB=paperless
+Environment=POSTGRES_USER=paperless
+Environment=POSTGRES_PASSWORD=paperless
+
+[Service]
+Restart=always
+TimeoutStartSec=900
+
+[Install]
+WantedBy=multi-user.target default.target

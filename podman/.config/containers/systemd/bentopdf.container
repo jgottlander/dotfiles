@@ -1,0 +1,16 @@
+[Unit]
+Description=BentoPDF
+After=network-online.target local-fs.target
+
+[Container]
+ContainerName=bentopdf
+Image=docker.io/bentopdf/bentopdf-simple:latest
+AutoUpdate=registry
+PublishPort=3333:8080
+
+[Service]
+Restart=always
+TimeoutStartSec=900
+
+[Install]
+WantedBy=multi-user.target default.target
