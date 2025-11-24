@@ -7,16 +7,15 @@ After=network-online.target local-fs.target
 ContainerName=bazarr
 Image=lscr.io/linuxserver/bazarr:latest
 AutoUpdate=registry
-Pod=vpn_stack.pod
+Network=gluetun.container
 UserNS=keep-id
 GroupAdd=keep-groups
-#User=1000:1000
-#Environment=PUID=0
-#Environment=PGID=0
+Environment=PUID=1000
+Environment=PGID=1000
 Environment=TZ=Europe/Stockholm
 Volume=bazaar_data:/config
-Volume=/mnt/media/Filmer:/movies
-Volume=/mnt/media/Serier:/tv
+Volume=/mnt/media/Filmer:/movies:z
+Volume=/mnt/media/Serier:/tv:z
 
 [Service]
 Restart=on-failure

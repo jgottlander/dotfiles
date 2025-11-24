@@ -7,7 +7,6 @@ After=network-online.target local-fs.target
 ContainerName=immich-redis
 Image=docker.io/valkey/valkey:8@sha256:81db6d39e1bba3b3ff32bd3a1b19a6d69690f94a3954ec131277b9a26b95b3aa
 Pod=immich.pod
-UserNS=keep-id
 GroupAdd=keep-groups
 
 HealthCmd=redis-cli ping || exit 1

@@ -15,7 +15,7 @@ PublishPort=22000:22000/udp
 PublishPort=21027:21027/udp
 
 Volume=syncthing_data:/var/syncthing
-Volume=/mnt/externa/Data:/data
+Volume=/mnt/externa/Data:/data:z
 
 [Service]
 Restart=on-failure

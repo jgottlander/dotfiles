@@ -6,7 +6,9 @@ After=local-fs.target network.target
 ContainerName=cleanuparr
 Image=ghcr.io/cleanuparr/cleanuparr:latest
 AutoUpdate=registry
-Pod=vpn_stack.pod
+Network=gluetun.container
+UserNS=keep-id
+GroupAdd=keep-groups
 Volume=cleanuparr_data:/config
 Environment=PORT=11011
 Environment=PUID=0

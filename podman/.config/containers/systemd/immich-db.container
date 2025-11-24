@@ -7,15 +7,13 @@ After=network-online.target local-fs.target
 ContainerName=immich-db
 Image=ghcr.io/immich-app/postgres:14-vectorchord0.4.3-pgvectors0.2.0@sha256:bcf63357191b76a916ae5eb93464d65c07511da41e3bf7a8416db519b40b1c23
 Pod=immich.pod
-UserNS=keep-id
 GroupAdd=keep-groups
 ShmSize=128m
 
-EnvironmentFile=./immich.env
-Environment=POSTGRES_PASSWORD: ${DB_PASSWORD}
-Environment=POSTGRES_USER: ${DB_USERNAME}
-Environment=POSTGRES_DB: ${DB_DATABASE_NAME}
-Environment=POSTGRES_INITDB_ARGS: '--data-checksums'
+Environment=POSTGRES_PASSWORD=postgres123
+Environment=POSTGRES_USER=postgres
+Environment=POSTGRES_DB=immich
+Environment=POSTGRES_INITDB_ARGS='--data-checksums'
 
 Volume=immich-db_data:/var/lib/postgresql/data
 

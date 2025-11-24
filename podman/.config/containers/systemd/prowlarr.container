@@ -9,7 +9,10 @@ Image=lscr.io/linuxserver/prowlarr:latest
 AutoUpdate=registry
 UserNS=keep-id
 GroupAdd=keep-groups
-Pod=vpn_stack.pod
+Network=gluetun.container
+Environment=PUID=1000
+Environment=GUID=1000
+Environment=TZ=Europe/Stockholm
 Volume=prowlarr_data:/config
 
 [Service]

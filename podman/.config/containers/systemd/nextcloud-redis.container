@@ -7,7 +7,6 @@ ContainerName=nextcloud-redis
 Image=docker.io/library/redis:latest
 AutoUpdate=registry
 Pod=nextcloud.pod
-UserNS=keep-id
 GroupAdd=keep-groups
 Volume=nextcloud-redis_data:/data
 Exec=redis-server --requirepass nextcloud

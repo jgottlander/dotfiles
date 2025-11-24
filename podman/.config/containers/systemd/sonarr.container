@@ -9,14 +9,18 @@ Image=lscr.io/linuxserver/sonarr:latest
 AutoUpdate=registry
 UserNS=keep-id
 GroupAdd=keep-groups
-Pod=vpn_stack.pod
+Environment=PUID=1000
+Environment=GUID=1000
+Environment=TZ=Europe/Stockholm
+Network=gluetun.container
+
 Volume=sonarr_data:/config
-Volume=/mnt/media/Serier:/tv
-Volume=/mnt/externa/Nedladdningar:/downloads
+Volume=/mnt/media/Serier:/tv:z
+Volume=/mnt/externa/Nedladdningar:/downloads:z
 
 [Service]
 Restart=on-failure
-TimeoutStartSec=900
+TimeoutStartSec=300
 
 [Install]
 WantedBy=default.target

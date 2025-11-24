@@ -7,13 +7,13 @@ Requires=podman.socket
 ContainerName=opencloud
 Image=docker.io/opencloudeu/opencloud-rolling:latest
 AutoUpdate=registry
-#UserNS=keep-id
-#GroupAdd=keep-groups
+UserNS=keep-id
+GroupAdd=keep-groups
 User=0
 PublishPort=9200:9200
 Volume=opencloud_config:/etc/opencloud
-Volume=/mnt/externa/Data/opencloud:/var/lib/opencloud
-RunInit=true
+Volume=/mnt/externa/Data/opencloud:/var/lib/opencloud:Z
+#RunInit=true
 Entrypoint=["/bin/sh"]
 Exec=-c 'opencloud init || true; opencloud server'
 
@@ -21,7 +21,6 @@ Environment=IDM_ADMIN_PASSWORD=admin
 Environment=OC_INSECURE=true
 Environment=PROXY_HTTP_ADDR=0.0.0.0:9200
 Environment=OC_URL=https://retropie.local:9200
-
 
 [Service]
 Restart=on-failure

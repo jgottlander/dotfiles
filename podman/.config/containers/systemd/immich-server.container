@@ -5,17 +5,16 @@ After=network-online.target local-fs.target immich-db.service immich-redis.servi
 
 [Container]
 ContainerName=immich-server
-Image=ghcr.io/immich-app/immich-server:release
+Image=ghcr.io/immich-app/immich-server:v2
 AutoUpdate=registry
-UserNS=keep-id
-GroupAdd=keep-groups
 Pod=immich.pod
+GroupAdd=keep-groups
 
-EnvironmentFile=./immich.env
-
-Volume=/mnt/externa/Data/immich:/data
+Volume=/mnt/externa/Data/immich:/data:Z
 Volume=/etc/localtime:/etc/localtime:ro
 AddDevice=/dev/dri:/dev/dri
+
+EnvironmentFile=./immich.env
 
 [Service]
 Restart=on-failure

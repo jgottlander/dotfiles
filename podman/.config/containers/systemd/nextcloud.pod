@@ -8,6 +8,7 @@ PodName=nextcloud
 PublishPort=80:80
 PublishPort=443:443
 PublishPort=9980:9980
+UserNS=keep-id
 
 [Service]
 Restart=on-failure

@@ -3,5 +3,5 @@ Description=Backs up home to externa
 
 [Service]
 Type=oneshot
-ExecStart=/usr/bin/rsync -aP --delete %h/RetroPie /mnt/externa/Backup/josef/RetroPie/ --exclude 'roms'
-ExecStart=/usr/bin/rsync -aP --delete %h/RetroPie/roms /mnt/externa/Spel/
+ExecStart=/usr/bin/rsync -aP --delete %h/Emulation /mnt/externa/Backup/bazzite/ --exclude 'roms'
+ExecStart=/usr/bin/rsync -aP --delete %h/Emulation/roms /mnt/externa/Spel/

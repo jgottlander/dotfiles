@@ -8,13 +8,16 @@ ContainerName=collabora
 Image=docker.io/collabora/code
 AutoUpdate=registry
 Pod=nextcloud.pod
-UserNS=keep-id
 GroupAdd=keep-groups
-Volume=collabora_data:/etc/coolwsd
+#User=1000:1000
+#Volume=collabora_data:/etc/coolwsd
+Volume=/etc/localtime:/etc/localtime:ro
 
 Environment=aliasgroup1=https://nextcloud.gottlander.eu:433,https://nextcloud\\.gottlander\\.eu:443
 Environment=dictionaries="en_GB sv_SE da_DK"
-Environment="extra_params=--o:ssl.enable=false --o:ssl.termination=true --o:user_interface.mode=compact"
+Environment="extra_params=--o:ssl.enable=false --o:ssl.termination=true --o:user_interface.mode=compact -o:logging.level=warning"
+Environment=username=josef
+Secret=secret_password,type=env,target=password
 
 [Service]
 Restart=on-failure

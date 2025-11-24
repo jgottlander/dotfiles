@@ -6,6 +6,7 @@ After=network-online.target local-fs.target
 [Pod]
 PodName=immich
 PublishPort=2283:2283
+UserNS=keep-id
 
 [Service]
 Restart=on-failure

@@ -7,11 +7,12 @@ ContainerName=navidrome
 Image=docker.io/deluan/navidrome:latest
 AutoUpdate=registry
 UserNS=keep-id
+GroupAdd=keep-groups
 User=1000:1000
 PublishPort=4533:4533
 
 Volume=navidrome_data:/data
-Volume=/mnt/media/Musik:/music
+Volume=/mnt/media/Musik:/music:z
 
 Environment=ND_LOGLEVEL=info
 

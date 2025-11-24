@@ -9,13 +9,13 @@ AutoUpdate=registry
 UserNS=keep-id
 User=1000:1000
 PublishPort=8096:8096/tcp
-IP=10.89.1.6
-HostName=retropie
+IP=10.89.0.7
+HostName=bazzite
 Network=jellyfin-bridge.network
 Volume=jellyfin_data:/config
 Volume=jellyfin_cache:/cache
-Volume=/mnt/media:/media
-Volume=/mnt/backup/jellyfin:/backup
+Volume=/mnt/media:/media:z
+Volume=/mnt/backup/jellyfin:/backup:Z
 AddDevice=/dev/dri:/dev/dri
 
 [Service]

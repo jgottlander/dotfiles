@@ -7,12 +7,17 @@ After=network-online.target local-fs.target
 ContainerName=radarr
 Image=lscr.io/linuxserver/radarr:latest
 AutoUpdate=registry
-Pod=vpn_stack.pod
-UserNS=keep-id
+Network=gluetun.container
 GroupAdd=keep-groups
+UserNS=keep-id
+
+Environment=PUID=1000
+Environment=GUID=1000
+Environment=TZ=Europe/Stockholm
+
 Volume=radarr_data:/config
-Volume=/mnt/media/Filmer:/movies
-Volume=/mnt/externa/Nedladdningar:/downloads
+Volume=/mnt/media/Filmer:/movies:z
+Volume=/mnt/externa/Nedladdningar:/downloads:z
 
 [Service]
 Restart=on-failure

@@ -7,13 +7,20 @@ After=network-online.target local-fs.target gluetun.service
 ContainerName=qbittorrent
 Image=lscr.io/linuxserver/qbittorrent:latest
 AutoUpdate=registry
-UserNS=keep-id
+
 GroupAdd=keep-groups
-Pod=vpn_stack.pod
+UserNS=keep-id
+
+Network=gluetun.container
+
+Environment=PUID=1000
+Environment=GUID=1000
+Environment=TZ=Europe/Stockholm
 Environment=WEBUI_PORT=8081
 Environment=TORRENTIG_PORT=6881
+
 Volume=qbittorrent_data:/config
-Volume=/mnt/externa/Nedladdningar:/downloads
+Volume=/mnt/externa/Nedladdningar:/downloads:z
 
 [Service]
 Restart=on-failure

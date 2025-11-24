@@ -1,6 +1,6 @@
 [Unit]
 Description=Nextcloud Container
-After=local-fs.target network.target nextcloud-db.service
+After=local-fs.target network.target nextcloud-db.service nextcloud-redis.service
 Requires=podman.socket
 
 [Container]
@@ -8,10 +8,9 @@ ContainerName=nextcloud
 Image=docker.io/library/nextcloud:fpm
 AutoUpdate=registry
 Pod=nextcloud.pod
-UserNS=keep-id
 GroupAdd=keep-groups
 Volume=nextcloud_data:/var/www/html
-Volume=/mnt/externa/Data/nextcloud:/var/www/html/data
+Volume=/mnt/externa/Data/nextcloud:/var/www/html/data:Z
 AddDevice=/dev/dri:/dev/dri
 
 Environment=MYSQL_HOST=nextcloud-db

@@ -9,7 +9,6 @@ Image=docker.io/library/mariadb:10.11
 AutoUpdate=registry
 Volume=nextcloud-db_data:/var/lib/mysql
 Pod=nextcloud.pod
-UserNS=keep-id
 GroupAdd=keep-groups
 Environment=MYSQL_DATABASE=nextcloud
 Environment=MYSQL_USER=nextcloud
