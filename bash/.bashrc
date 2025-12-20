@@ -10,7 +10,7 @@ esac
 
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
-HISTCONTROL=ignoreboth
+HISTCONTROL=ignoreboth:erasedups
 
 # append to the history file, don't overwrite it
 shopt -s histappend
@@ -18,6 +18,8 @@ shopt -s histappend
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 HISTSIZE=1000
 HISTFILESIZE=2000
+
+PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; history -r"
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -118,4 +120,35 @@ if [ -d ~/.config/nvm ]; then
     [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
     [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 fi
+
+eval "$(starship init bash)"
+
+#!/bin/bash
+#
+# File: 00-system-info - create the MOTD
+# Copyright: (C) Martin Doering <martin@datapulp.de>
+# License: Public Domain (do what you want with it)
+#
+
+diskusage=$(df -H -x squashfs -x tmpfs -x devtmpfs --total|grep total)
+
+printf "%`tput cols`s"|tr ' ' '#'
+echo " Hostname: $(hostname)"
+echo " Distro: $(lsb_release -s -d)"
+echo
+echo " CPU: $(cat /proc/cpuinfo | grep 'model name' | head -1 | cut -d':' -f2)"
+echo " Disk: $(echo $diskusage | awk '{ a = $2 } END { print a }'|sed 's/G/ G/'|sed 's/T/ T/')"
+echo " Memory: $(free -m | head -n 2 | tail -n 1 | awk {'print $2'}) M"
+echo " Swap: $(free -m | tail -n 1 | awk {'print $2'}) M"
+echo
+
+if which ip >/dev/null
+then
+echo " IP V4 Networks"
+ip -o -4 -br a|grep -v '^lo'|sed 's/^/ /'|sed 's/\/..//'
+echo
+echo " IP V6 Networks"
+ip -o -6 -br a|grep -v '^lo'|sed 's/^/ /'|sed 's/\/..//'
+fi
+printf "%`tput cols`s"|tr ' ' '#'
 

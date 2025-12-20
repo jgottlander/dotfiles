@@ -7,15 +7,16 @@ ContainerName=jellyfin
 Image=docker.io/jellyfin/jellyfin:latest
 AutoUpdate=registry
 UserNS=keep-id
+GroupAdd=keep-groups
 User=1000:1000
+
 PublishPort=8096:8096/tcp
-IP=10.89.0.7
-HostName=bazzite
-Network=jellyfin-bridge.network
+HostName=nasen
+
 Volume=jellyfin_data:/config
 Volume=jellyfin_cache:/cache
 Volume=/mnt/media:/media:z
-Volume=/mnt/backup/jellyfin:/backup:Z
+Volume=/mnt/backup/jellyfin:/backup
 AddDevice=/dev/dri:/dev/dri
 
 [Service]

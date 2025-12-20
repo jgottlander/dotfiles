@@ -6,10 +6,13 @@ After=network.target
 ContainerName=jellyseerr
 Image=docker.io/fallenbagel/jellyseerr
 AutoUpdate=registry
+UserNS=keep-id
 GroupAdd=keep-groups
-Network=gluetun.container
+#Network=gluetun.container
 Environment=LOG_LEVEL=debug
-#PublishPort=5055:5055
+Environment=TZ=Europe/Stockholm
+Environment=PORT=5055
+PublishPort=5055:5055
 Volume=jellyseerr_data:/app/config
 
 [Service]

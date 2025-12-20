@@ -7,6 +7,8 @@ ContainerName=bentopdf
 Image=docker.io/bentopdf/bentopdf-simple:latest
 AutoUpdate=registry
 PublishPort=3333:8080
+UserNS=keep-id
+GroupAdd=keep-groups
 
 [Service]
 Restart=always

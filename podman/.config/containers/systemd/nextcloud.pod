@@ -5,8 +5,8 @@ After=network-online.target local-fs.target
 
 [Pod]
 PodName=nextcloud
-PublishPort=80:80
-PublishPort=443:443
+PublishPort=8080:80
+PublishPort=8443:443
 PublishPort=9980:9980
 UserNS=keep-id
 

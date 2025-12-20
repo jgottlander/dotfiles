@@ -10,7 +10,7 @@ AutoUpdate=registry
 Pod=immich.pod
 GroupAdd=keep-groups
 
-Volume=/mnt/externa/Data/immich:/data:Z
+Volume=/mnt/externa/Data/immich:/data
 Volume=/etc/localtime:/etc/localtime:ro
 AddDevice=/dev/dri:/dev/dri
 
