@@ -5,7 +5,7 @@ After=network-online.target local-fs.target
 
 [Container]
 ContainerName=immich-ml
-Image=ghcr.io/immich-app/immich-machine-learning:release
+Image=ghcr.io/immich-app/immich-machine-learning:v2
 AutoUpdate=registry
 Pod=immich.pod
 Volume=immich-ml_data:/cache

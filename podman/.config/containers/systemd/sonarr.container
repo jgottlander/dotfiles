@@ -5,18 +5,20 @@ After=network-online.target local-fs.target
 
 [Container]
 ContainerName=sonarr
-Image=lscr.io/linuxserver/sonarr:latest
+Image=ghcr.io/hotio/sonarr
 AutoUpdate=registry
-UserNS=keep-id
-GroupAdd=keep-groups
-Environment=PUID=1000
-Environment=GUID=1000
+UserNS=host
+
+Environment=PUID=0
+Environment=PGID=0
+Environment=UMASK=002
 Environment=TZ=Europe/Stockholm
+
 Network=gluetun.container
 
 Volume=sonarr_data:/config
-Volume=/mnt/media/Serier:/tv:z
-Volume=/mnt/externa/Nedladdningar:/downloads:z
+Volume=/mnt/media/Serier:/data/tv:z
+Volume=/mnt/externa/Nedladdningar:/data/downloads:z
 
 [Service]
 Restart=on-failure

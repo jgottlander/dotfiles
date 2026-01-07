@@ -5,17 +5,20 @@ After=network-online.target local-fs.target
 
 [Container]
 ContainerName=bazarr
-Image=lscr.io/linuxserver/bazarr:latest
+Image=ghcr.io/hotio/bazarr
 AutoUpdate=registry
 Network=gluetun.container
-UserNS=keep-id
-GroupAdd=keep-groups
-Environment=PUID=1000
-Environment=PGID=1000
+UserNS=host
+
+Environment=PUID=0
+Environment=PGID=0
 Environment=TZ=Europe/Stockholm
+Environment=UMASK=002
+Environment=WEBUI_PORTS=6767/tcp
+
 Volume=bazaar_data:/config
-Volume=/mnt/media/Filmer:/movies:z
-Volume=/mnt/media/Serier:/tv:z
+Volume=/mnt/media/Filmer:/data/movies:z
+Volume=/mnt/media/Serier:/data/tv:z
 
 [Service]
 Restart=on-failure

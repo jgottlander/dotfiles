@@ -5,17 +5,18 @@ After=network-online.target local-fs.target
 
 [Container]
 ContainerName=lidarr
-Image=lscr.io/linuxserver/lidarr:latest
+Image=ghcr.io/hotio/lidarr
 AutoUpdate=registry
-GroupAdd=keep-groups
-UserNS=keep-id
-Environment=PUID=1000
-Environment=PGID=1000
+UserNS=host
+
+Environment=PUID=0
+Environment=PGID=0
 Environment=TZ=Europe/Stockholm
+Environment=UMASK=002
 Network=gluetun.container
 Volume=lidarr_data:/config
-Volume=/mnt/media/Musik:/music:z
-Volume=/mnt/externa/Nedladdningar:/downloads:z
+Volume=/mnt/media/Musik:/data/music:z
+Volume=/mnt/externa/Nedladdningar:/data/downloads:z
 
 [Service]
 Restart=on-failure

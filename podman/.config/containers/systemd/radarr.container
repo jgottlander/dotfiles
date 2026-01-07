@@ -5,19 +5,19 @@ After=network-online.target local-fs.target
 
 [Container]
 ContainerName=radarr
-Image=lscr.io/linuxserver/radarr:latest
+Image=ghcr.io/hotio/radarr
 AutoUpdate=registry
 Network=gluetun.container
-GroupAdd=keep-groups
-UserNS=keep-id
+UserNS=host
 
-Environment=PUID=1000
-Environment=GUID=1000
+Environment=PUID=0
+Environment=PGID=0
 Environment=TZ=Europe/Stockholm
+Environment=UMASK=002
 
 Volume=radarr_data:/config
-Volume=/mnt/media/Filmer:/movies:z
-Volume=/mnt/externa/Nedladdningar:/downloads:z
+Volume=/mnt/media/Filmer:/data/movies:z
+Volume=/mnt/externa/Nedladdningar:/data/downloads:z
 
 [Service]
 Restart=on-failure

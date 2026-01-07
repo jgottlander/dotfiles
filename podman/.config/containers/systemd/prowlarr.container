@@ -5,14 +5,15 @@ After=network-online.target local-fs.target
 
 [Container]
 ContainerName=prowlarr
-Image=lscr.io/linuxserver/prowlarr:latest
+Image=ghcr.io/hotio/prowlarr
 AutoUpdate=registry
-UserNS=keep-id
-GroupAdd=keep-groups
+UserNS=host
 Network=gluetun.container
-Environment=PUID=1000
-Environment=GUID=1000
+
+Environment=PUID=0
+Environment=PGID=0
 Environment=TZ=Europe/Stockholm
+
 Volume=prowlarr_data:/config
 
 [Service]
