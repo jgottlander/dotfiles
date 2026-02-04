@@ -3,17 +3,17 @@ Description=Jellyseerr
 After=network.target
 
 [Container]
-ContainerName=jellyseerr
-Image=docker.io/fallenbagel/jellyseerr
+ContainerName=seerr
+Image=ghcr.io/hotio/seerr
 AutoUpdate=registry
-UserNS=keep-id
-GroupAdd=keep-groups
-#Network=gluetun.container
-Environment=LOG_LEVEL=debug
+UserNS=host
 Environment=TZ=Europe/Stockholm
-Environment=PORT=5055
+Environment=WEBUI_PORT=5055
+Environment=PUID=0
+Environment=PGID=0
+Environment=UMASK=002
 PublishPort=5055:5055
-Volume=jellyseerr_data:/app/config
+Volume=jellyseerr_data:/config
 
 [Service]
 Restart=on-failure

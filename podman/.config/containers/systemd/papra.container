@@ -1,0 +1,21 @@
+[Unit]
+Description=Papra container
+After=network-online.target local-fs.target
+
+[Container]
+ContainerName=papra
+Image=ghcr.io/papra-hq/papra:latest
+AutoUpdate=registry
+#UserNS=keep-id
+#GroupAdd=keep-groups
+#User=1000:1000
+Environment=APP_BASE_URL=http://nasen.local:1221
+PublishPort=1221:1221
+Volume=papra_data:/app/app-data
+
+[Service]
+Restart=always
+TimeoutStartSec=900
+
+[Install]
+WantedBy=multi-user.target default.target

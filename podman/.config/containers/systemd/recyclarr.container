@@ -12,7 +12,7 @@ Volume=recyclarr_data:/config
 Environment=TZ=Europe/Stockholm
 Environment=RECYCLARR_CREATE_CONFIG=true
 User=1000:1000
-Network=host
+#Network=host
 
 [Service]
 Restart=always

@@ -1,0 +1,23 @@
+[Unit]
+Description=Dispacharr
+After=network-online.target local-fs.target
+
+[Container]
+ContainerName=dispatcharr
+Image=ghcr.io/dispatcharr/dispatcharr:latest
+AutoUpdate=registry
+#UserNS=host
+#GroupAdd=keep-groups
+PublishPort=9191:9191
+#User=1000:1000
+
+Volume=dispatcharr_data:/data
+AddDevice=/dev/dri:/dev/dri
+Environment=DISPATCHARR_LOG_LEVEL=DEBUG
+
+[Service]
+Restart=always
+TimeoutStartSec=900
+
+[Install]
+WantedBy=multi-user.target default.target

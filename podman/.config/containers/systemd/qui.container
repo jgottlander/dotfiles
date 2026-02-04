@@ -1,0 +1,25 @@
+[Unit]
+Description=Qui container
+After=network-online.target local-fs.target
+
+[Container]
+ContainerName=qui
+Image=ghcr.io/hotio/qui
+AutoUpdate=registry
+UserNS=host
+Network=gluetun.container
+Environment=PUID=0
+Environment=PGID=0
+Environment=TZ=Europe/Stockholm
+Environment=UMASK=002
+Environment=WEBUI_PORTS=7476/tcp
+
+Volume=qui_data:/config
+Volume=/mnt/externa/Nedladdningar:/data/downloads
+
+[Service]
+Restart=always
+TimeoutStartSec=900
+
+[Install]
+WantedBy=multi-user.target default.target

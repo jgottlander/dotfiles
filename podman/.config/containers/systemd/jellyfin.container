@@ -4,18 +4,22 @@ After=local-fs.target network.target
 
 [Container]
 ContainerName=jellyfin
-Image=docker.io/jellyfin/jellyfin:latest
+#Image=docker.io/jellyfin/jellyfin:latest
+Image=ghcr.io/hotio/jellyfin
 AutoUpdate=registry
-UserNS=keep-id
-GroupAdd=keep-groups
-User=1000:1000
+UserNS=host
 
 PublishPort=8096:8096/tcp
 HostName=nasen
+Environment=PUID=0
+Environment=PGID=0
+Environment=UMASK=002
+Environment=TZ=Europe/Stockholm
+Environment=WEBUI_PORTS=8096/tcp
 
 Volume=jellyfin_data:/config
 Volume=jellyfin_cache:/cache
-Volume=/mnt/media:/media:z
+Volume=/mnt/media:/data
 Volume=/mnt/backup/jellyfin:/backup
 AddDevice=/dev/dri:/dev/dri
 

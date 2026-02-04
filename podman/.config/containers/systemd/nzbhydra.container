@@ -1,0 +1,25 @@
+[Unit]
+Description=Nzbhydra2 container
+After=network-online.target local-fs.target
+
+[Container]
+ContainerName=nzbhydra2
+Image=ghcr.io/hotio/nzbhydra2
+AutoUpdate=registry
+UserNS=host
+PublishPort=5076:5076
+
+Environment=PUID=0
+Environment=PGID=0
+Environment=UMASK=002
+Environment=TZ=Europe/Stockholm
+Environment=WEBUI_PORTS=5076/tcp
+
+Volume=nzbhydra_data:/config
+
+[Service]
+Restart=always
+TimeoutStartSec=900
+
+[Install]
+WantedBy=multi-user.target default.target

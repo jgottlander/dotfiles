@@ -25,6 +25,7 @@ PublishPort=6767:6767
 PublishPort=5656:5656
 PublishPort=8000:8000
 PublishPort=11011:11011
+PublishPort=7476:7476
 
 Environment=TZ=Europe/Stockholm
 Environment=VPN_SERVICE_PROVIDER=mullvad

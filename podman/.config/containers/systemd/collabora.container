@@ -7,7 +7,7 @@ Requires=podman.socket
 ContainerName=collabora
 Image=docker.io/collabora/code
 AutoUpdate=registry
-Pod=nextcloud.pod
+#Pod=nextcloud.pod
 GroupAdd=keep-groups
 #User=1000:1000
 #Volume=collabora_data:/etc/coolwsd
@@ -24,4 +24,4 @@ Restart=on-failure
 TimeoutStartSec=900
 
 [Install]
-WantedBy=default.target multi-user.target
+#WantedBy=default.target

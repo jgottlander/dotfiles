@@ -4,7 +4,7 @@ After=network.target local-fs.target
 
 [Container]
 ContainerName=caddy
-Image=docker.io/library/caddy:latest
+Image=docker.io/library/caddy:alpine
 AutoUpdate=registry
 Pod=nextcloud.pod
 AddCapability=CAP_NET_ADMIN

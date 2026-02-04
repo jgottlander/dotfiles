@@ -10,6 +10,7 @@ AutoUpdate=registry
 UserNS=host
 Network=gluetun.container
 Volume=/mnt/externa/Nedladdningar:/data/downloads:z
+Volume=unpackerr_data:/config
 
 Environment=TZ=Europe/Stockholm
 Environment=PUID=0
