@@ -1,0 +1,24 @@
+[Unit]
+Description=Homepage
+After=network-online.target local-fs.target
+
+[Container]
+ContainerName=homepage
+Image=ghcr.io/gethomepage/homepage:latest
+AutoUpdate=registry
+PublishPort=3003:3000
+UserNS=keep-id:uid=1000,gid=1000
+GroupAdd=keep-groups
+Environment=PUID=1000
+Environment=PGID=1000
+Environment=HOMEPAGE_ALLOWED_HOSTS=nasen.local:3003
+
+Volume=homepage_data:/app/config
+Volume=/run/user/1000/podman/podman.sock:/var/run/docker.sock:ro
+
+[Service]
+Restart=always
+TimeoutStartSec=900
+
+[Install]
+WantedBy=multi-user.target default.target

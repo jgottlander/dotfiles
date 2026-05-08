@@ -1,0 +1,45 @@
+[Unit]
+Description=Tdarr container
+After=network-online.target local-fs.target
+
+[Container]
+ContainerName=tdarr
+Image=ghcr.io/haveagitgat/tdarr:latest
+AutoUpdate=registry
+
+Network=bridge
+PublishPort=8265:8265
+PublishPort=8266:8266
+AddDevice=/dev/dri:/dev/dri
+GroupAdd=keep-groups
+User=0
+UserNS=keep-id:uid=1000,gid=1000
+
+Environment=TZ=Europe/Stockholm
+Environment=PUID=1000
+Environment=PGID=1000
+Environment=UMASK_SET=002
+Environment=serverIP=0.0.0.0
+Environment=serverPort=8266
+Environment=webUIPort=8265
+Environment=internalNode=true
+Environment=inContainer=true
+Environment=ffmpegVersion=7
+Environment=nodeName=nasen
+Environment=auth=false
+Environment=openBrowser=true
+Environment=maxLogSizeMB=10
+Environment=cronPluginUpdate=
+
+Volume=tdarr_server:/app/server
+Volume=tdarr_configs:/app/configs
+Volume=tdarr_logs:/app/logs
+Volume=/home/josef/srv/tdarr/cache:/temp
+Volume=/mnt/media:/media
+
+[Service]
+Restart=always
+TimeoutStartSec=900
+
+[Install]
+WantedBy=multi-user.target default.target

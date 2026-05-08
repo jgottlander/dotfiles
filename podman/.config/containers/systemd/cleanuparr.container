@@ -7,12 +7,13 @@ ContainerName=cleanuparr
 Image=ghcr.io/cleanuparr/cleanuparr:latest
 AutoUpdate=registry
 Network=gluetun.container
-UserNS=keep-id
-GroupAdd=keep-groups
 Volume=cleanuparr_data:/config
+User=0
+UserNS=keep-id:uid=1000,gid=1000
+GroupAdd=keep-groups
 Environment=PORT=11011
-Environment=PUID=0
-Environment=PGID=0
+Environment=PUID=1000
+Environment=PGID=1000
 Environment=TZ=Europe/Stockholm
 
 [Service]

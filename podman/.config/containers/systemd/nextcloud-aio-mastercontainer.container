@@ -1,0 +1,46 @@
+[Unit]
+Description=Nextcloud AIO Master Container
+Documentation=https://github.com/nextcloud/all-in-one/blob/main/docker-rootless.md
+After=local-fs.target network.target
+Requires=podman.socket
+
+[Container]
+ContainerName=nextcloud-aio-mastercontainer
+Image=ghcr.io/nextcloud-releases/all-in-one:latest
+AutoUpdate=registry
+#UserNS=host
+#GroupAdd=keep-groups
+#User=0:0
+#AddDevice=/dev/dri
+RunInit=true
+Network=bridge
+SecurityLabelDisable=true
+DNSSearch=.
+
+PublishPort=0.0.0.0:11001:8080
+#PublishPort=80:80
+#PublishPort=443:443
+#PublishPort=8080:8080
+#PublishPort=8443:8443
+
+Volume=nextcloud_aio_mastercontainer:/mnt/docker-aio-config
+Volume=/run/user/1000/podman/podman.sock:/var/run/docker.sock:ro
+Volume=/mnt/externa/Backup/nextcloud:/mnt/backup
+
+PodmanArgs="--sig-proxy=false"
+
+Environment=WATCHTOWER_DOCKER_SOCKET_PATH=/var/run/docker.sock:ro
+Environment=APACHE_PORT=11000
+Environment=APACHE_IP_BINDING=0.0.0.0
+#Environment=APACHE_ADDITIONAL_NETWORK=""
+#Environment=SKIP_DOMAIN_VALIDATION=true
+Environment=NEXTCLOUD_ENABLE_DRI_DEVICE=true
+Environment=NEXTCLOUD_DATADIR=/mnt/externa/Data/nextcloud
+Environment=COLLABORA_SECCOMP_DISABLED=true
+
+[Service]
+Restart=on-failure
+TimeoutStartSec=900
+
+[Install]
+#WantedBy=default.target multi-user.target

@@ -8,10 +8,12 @@ ContainerName=bazarr
 Image=ghcr.io/hotio/bazarr
 AutoUpdate=registry
 Network=gluetun.container
-UserNS=host
+User=0
+UserNS=keep-id:uid=1000,gid=1000
+GroupAdd=keep-groups
 
-Environment=PUID=0
-Environment=PGID=0
+Environment=PUID=1000
+Environment=PGID=1000
 Environment=TZ=Europe/Stockholm
 Environment=UMASK=002
 Environment=WEBUI_PORTS=6767/tcp

@@ -11,20 +11,35 @@ AddCapability=NET_ADMIN
 AddDevice=/dev/net/tun:/dev/net/tun
 PodmanArgs=--privileged
 Volume=gluetun_data:/gluetun
-#Network=jellyfin-bridge.network
+Network=jellyfin-bridge.network
 
+# qBittorrent
 PublishPort=8081:8081
 PublishPort=6881:6881
 PublishPort=6881:6881/udp
+
+# Sonarr
 PublishPort=8989:8989
+
+# Prowlarr
 PublishPort=9696:9696
+
+# Lidarr
 PublishPort=8686:8686
+
+# Radarr
 PublishPort=7878:7878
+
+# Seerr
 #PublishPort=5055:5055
+
+# Bazarr
 PublishPort=6767:6767
+
+# Unpackerr
 PublishPort=5656:5656
-PublishPort=8000:8000
-PublishPort=11011:11011
+
+# Qui
 PublishPort=7476:7476
 
 Environment=TZ=Europe/Stockholm

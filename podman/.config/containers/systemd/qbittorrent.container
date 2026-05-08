@@ -8,13 +8,14 @@ ContainerName=qbittorrent
 Image=ghcr.io/hotio/qbittorrent
 AutoUpdate=registry
 
-#GroupAdd=keep-groups
-UserNS=host
+User=0
+UserNS=keep-id:uid=1000,gid=1000
+GroupAdd=keep-groups
 
 Network=gluetun.container
 
-Environment=PUID=0
-Environment=PGID=0
+Environment=PUID=1000
+Environment=PGID=1000
 Environment=UMASK=002
 Environment=LIBTORRENT=v1
 Environment=TZ=Europe/Stockholm

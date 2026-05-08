@@ -6,11 +6,12 @@ After=network-online.target local-fs.target
 ContainerName=nzbhydra2
 Image=ghcr.io/hotio/nzbhydra2
 AutoUpdate=registry
-UserNS=host
 PublishPort=5076:5076
-
-Environment=PUID=0
-Environment=PGID=0
+User=0
+UserNS=keep-id:uid=1000,gid=1000
+GroupAdd=keep-groups
+Environment=PUID=1000
+Environment=PGID=1000
 Environment=UMASK=002
 Environment=TZ=Europe/Stockholm
 Environment=WEBUI_PORTS=5076/tcp
@@ -22,4 +23,4 @@ Restart=always
 TimeoutStartSec=900
 
 [Install]
-WantedBy=multi-user.target default.target
+#WantedBy=multi-user.target default.target

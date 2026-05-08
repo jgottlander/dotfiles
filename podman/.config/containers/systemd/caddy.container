@@ -8,7 +8,7 @@ Image=docker.io/library/caddy:alpine
 AutoUpdate=registry
 Pod=nextcloud.pod
 AddCapability=CAP_NET_ADMIN
-Environment=EMAIL=josef.gottlander@gmail.com
+Environment=EMAIL=josef.gottlander@pm.me
 
 Volume=./Caddyfile:/etc/caddy/Caddyfile
 Volume=caddy_data:/data

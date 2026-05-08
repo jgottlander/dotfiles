@@ -19,10 +19,11 @@ Environment=MYSQL_USER=nextcloud
 Environment=MYSQL_PASSWORD=nextcloud
 Environment=NEXTCLOUD_TRUSTED_DOMAINS=nextcloud.gottlander.eu
 Environment=OVERWRITEPROTOCOL=https
+Environment=TZ=Europe/Stockholm
 
 [Service]
 Restart=on-failure
 TimeoutStartSec=900
 
 [Install]
-WantedBy=default.target multi-user.target
+#WantedBy=default.target multi-user.target

@@ -7,14 +7,16 @@ After=network-online.target local-fs.target
 ContainerName=unpackerr
 Image=ghcr.io/hotio/unpackerr
 AutoUpdate=registry
-UserNS=host
+User=0
+UserNS=keep-id:uid=1000,gid=1000
+GroupAdd=keep-groups
 Network=gluetun.container
 Volume=/mnt/externa/Nedladdningar:/data/downloads:z
 Volume=unpackerr_data:/config
 
 Environment=TZ=Europe/Stockholm
-Environment=PUID=0
-Environment=PGID=0
+Environment=PUID=1000
+Environment=PGID=1000
 Environment=UMASK=002
 
 Environment=UN_LOG_FILE=/data/downloads/unpackerr.log

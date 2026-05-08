@@ -1,0 +1,26 @@
+[Unit]
+Description=OwnCloud
+After=network-online.target local-fs.target
+
+[Container]
+ContainerName=owncloud
+Image=docker.io/owncloud/ocis
+AutoUpdate=registry
+RunInit=true
+UserNS=keep-id
+GroupAdd=keep-groups
+Volume=owncloud_config:/etc/ocis
+Volume=owncloud_data:/var/lib/ocis
+Environment=PUID=1000
+Environment=PGID=1000
+Environment=TZ=Europe/Stockholm
+Environment=IDM_ADMIN_PASSWORD=skabb123
+Environment=OCIS_JWT_SECRET=skabb123
+Environment=OCIS_TRANSFER_SECRET=skabb123
+
+[Service]
+Restart=always
+TimeoutStartSec=900
+
+[Install]
+#WantedBy=multi-user.target default.target

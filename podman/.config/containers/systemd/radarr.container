@@ -8,16 +8,18 @@ ContainerName=radarr
 Image=ghcr.io/hotio/radarr
 AutoUpdate=registry
 Network=gluetun.container
-UserNS=host
+User=0
+UserNS=keep-id:uid=1000,gid=1000
+GroupAdd=keep-groups
 
-Environment=PUID=0
-Environment=PGID=0
+Environment=PUID=1000
+Environment=PGID=1000
 Environment=TZ=Europe/Stockholm
 Environment=UMASK=002
 
 Volume=radarr_data:/config
-Volume=/mnt/media/Filmer:/data/movies:z
-Volume=/mnt/externa/Nedladdningar:/data/downloads:z
+Volume=/mnt/media/Filmer:/data/movies
+Volume=/mnt/externa/Nedladdningar:/data/downloads
 
 [Service]
 Restart=on-failure

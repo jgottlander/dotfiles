@@ -1,27 +1,25 @@
 [Unit]
-Description=Collabora Container
-After=local-fs.target network.target
-Requires=podman.socket
+Description=Collabora Online Development Edition
+After=network-online.target local-fs.target
 
 [Container]
 ContainerName=collabora
-Image=docker.io/collabora/code
+Image=docker.io/collabora/code:latest
 AutoUpdate=registry
-#Pod=nextcloud.pod
-GroupAdd=keep-groups
 #User=1000:1000
-#Volume=collabora_data:/etc/coolwsd
-Volume=/etc/localtime:/etc/localtime:ro
-
-Environment=aliasgroup1=https://nextcloud.gottlander.eu:433,https://nextcloud\\.gottlander\\.eu:443
-Environment=dictionaries="en_GB sv_SE da_DK"
-Environment="extra_params=--o:ssl.enable=false --o:ssl.termination=true --o:user_interface.mode=compact -o:logging.level=warning"
-Environment=username=josef
-Secret=secret_password,type=env,target=password
+Pod=nextcloud.pod
+GroupAdd=keep-groups
+#AddCapability=SYS_CHROOT
+#AddCapability=SYS_ADMIN
+#AddCapability=FOWNER
+#AddCapability=CHOWN
+Environment="extra_params=--o:ssl.enable=false --o:user_interface.use_integration_theme=false"
+Environment=dictionaries="en_GB da_DK sv_SE"
+Environment=domain=office.gottlander.eu
 
 [Service]
-Restart=on-failure
+Restart=always
 TimeoutStartSec=900
 
 [Install]
-#WantedBy=default.target
+#WantedBy=multi-user.target default.target
