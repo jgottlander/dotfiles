@@ -1,5 +1,5 @@
 [user]
-	email = josef.gottlander@gmail.com
+	email = josef.gottlander@pm.com
 	name = Josef Gottlander
 [alias]
 	hist = log --all --decorate --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
