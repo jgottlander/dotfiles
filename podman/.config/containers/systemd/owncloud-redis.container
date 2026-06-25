@@ -1,0 +1,24 @@
+[Unit]
+Description=Redis Cache Server
+After=network.target
+
+[Container]
+ContainerName=owncloud-redis
+Image=docker.io/library/redis:6
+AutoUpdate=registry
+Pod=owncloud.pod
+GroupAdd=keep-groups
+Volume=owncloud-redis_data:/data
+Exec=redis-server --databases 1
+
+HealthCmd=redis-cli ping
+HealthInterval=10s
+HealthTimeout=5s
+HealthRetries=5
+
+[Service]
+Restart=on-failure
+TimeoutStartSec=900
+
+[Install]
+WantedBy=default.target

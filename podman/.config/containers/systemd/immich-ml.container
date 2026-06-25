@@ -5,12 +5,13 @@ After=network-online.target local-fs.target
 
 [Container]
 ContainerName=immich-ml
-Image=ghcr.io/immich-app/immich-machine-learning:v2
+Image=ghcr.io/immich-app/immich-machine-learning:release
 AutoUpdate=registry
 Pod=immich.pod
 Volume=immich-ml_data:/cache
 Volume=/dev/bus/usb:/dev/bus/usb
 AddDevice=/dev/dri:/dev/dri
+Environment=IMMICH_HOST=0.0.0.0
 
 [Service]
 Restart=on-failure

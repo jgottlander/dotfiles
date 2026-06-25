@@ -7,7 +7,7 @@ After=network-online.target local-fs.target
 PodName=nextcloud
 PublishPort=8080:80
 PublishPort=8443:443
-PublishPort=9980:9980
+#PublishPort=9980:9980
 UserNS=keep-id
 
 [Service]
@@ -15,4 +15,4 @@ Restart=on-failure
 TimeoutStartSec=900
 
 [Install]
-#WantedBy=default.target
+WantedBy=default.target

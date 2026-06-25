@@ -7,7 +7,6 @@ ContainerName=glance
 Image=docker.io/glanceapp/glance:latest
 AutoUpdate=registry
 PublishPort=8082:8080
-#Network=host
 
 Volume=glance_data:/app/config
 Volume=glance_assets:/app/assets
@@ -19,4 +18,4 @@ Restart=on-failure
 TimeoutStartSec=900
 
 [Install]
-#WantedBy=default.target
+WantedBy=default.target

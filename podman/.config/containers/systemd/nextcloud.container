@@ -9,6 +9,7 @@ Image=docker.io/library/nextcloud:fpm
 AutoUpdate=registry
 Pod=nextcloud.pod
 GroupAdd=keep-groups
+#User=0
 Volume=nextcloud_data:/var/www/html
 Volume=/mnt/externa/Data/nextcloud:/var/www/html/data
 AddDevice=/dev/dri:/dev/dri
@@ -20,10 +21,12 @@ Environment=MYSQL_PASSWORD=nextcloud
 Environment=NEXTCLOUD_TRUSTED_DOMAINS=nextcloud.gottlander.eu
 Environment=OVERWRITEPROTOCOL=https
 Environment=TZ=Europe/Stockholm
+Environment=APACHE_RUN_USER=1000
+Environment=APACHE_RUN_GROUP=1000
 
 [Service]
 Restart=on-failure
 TimeoutStartSec=900
 
 [Install]
-#WantedBy=default.target multi-user.target
+WantedBy=default.target

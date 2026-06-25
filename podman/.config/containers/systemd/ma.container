@@ -1,0 +1,22 @@
+[Unit]
+Description=Music Assistant
+After=network-online.target local-fs.target
+
+[Container]
+ContainerName=music-assistant
+Image=ghcr.io/music-assistant/server:latest
+AutoUpdate=registry
+Network=host
+UserNS=keep-id
+GroupAdd=keep-groups
+
+Volume=music-assistant_data:/data
+Volume=/mnt/media/Musik:/media
+AddCapability=SYS_ADMIN,DAC_READ_SEARCH
+
+[Service]
+Restart=always
+TimeoutStartSec=900
+
+[Install]
+WantedBy=default.target

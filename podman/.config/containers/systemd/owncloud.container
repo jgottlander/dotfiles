@@ -1,26 +1,36 @@
 [Unit]
-Description=OwnCloud
-After=network-online.target local-fs.target
+Description=OwnCloud server
+After=network-online.target local-fs.target owncloud-db.service owncloud-redis.service
 
 [Container]
-ContainerName=owncloud
-Image=docker.io/owncloud/ocis
+ContainerName=owncloud-server
+Image=docker.io/owncloud/server:latest
 AutoUpdate=registry
-RunInit=true
-UserNS=keep-id
+Pod=owncloud.pod
+User=0
 GroupAdd=keep-groups
-Volume=owncloud_config:/etc/ocis
-Volume=owncloud_data:/var/lib/ocis
-Environment=PUID=1000
-Environment=PGID=1000
-Environment=TZ=Europe/Stockholm
-Environment=IDM_ADMIN_PASSWORD=skabb123
-Environment=OCIS_JWT_SECRET=skabb123
-Environment=OCIS_TRANSFER_SECRET=skabb123
+Volume=/mnt/externa/Data/owncloud:/mnt/data
+Environment=OWNCLOUD_DOMAIN=localhost:8085
+Environment=OWNCLOUD_TRUSTED_DOMAINS=owncloud.gottlander.eu
+Environment=OWNCLOUD_DB_TYPE=mysql
+Environment=OWNCLOUD_DB_NAME=owncloud
+Environment=OWNCLOUD_DB_USERNAME=owncloud
+Environment=OWNCLOUD_DB_PASSWORD=owncloud
+Environment=OWNCLOUD_DB_HOST=owncloud-db
+Environment=OWNCLOUD_ADMIN_USERNAME=admin
+Environment=OWNCLOUD_ADMIN_PASSWORD=admin
+Environment=OWNCLOUD_MYSQL_UTF8MB4=true
+Environment=OWNCLOUD_REDIS_ENABLED=true
+Environment=OWNCLOUD_REDIS_HOST=owncloud-redis
+
+HealthCmd=/usr/bin/healthcheck
+HealthInterval=30s
+HealthTimeout=10s
+HealthRetries=5
 
 [Service]
 Restart=always
 TimeoutStartSec=900
 
 [Install]
-#WantedBy=multi-user.target default.target
+#WantedBy=default.target

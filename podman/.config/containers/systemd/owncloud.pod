@@ -1,11 +1,11 @@
 [Unit]
-Description=Immich Pod
+Description=Owncloud Stack
 Wants=network-online.target
 After=network-online.target local-fs.target
 
 [Pod]
-PodName=immich
-PublishPort=2283:2283
+PodName=owncloud
+PublishPort=8085:8080
 UserNS=keep-id:uid=1000,gid=1000
 
 [Service]

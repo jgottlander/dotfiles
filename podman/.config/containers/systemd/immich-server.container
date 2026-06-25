@@ -1,11 +1,11 @@
 [Unit]
 Description=Immich server
-Wants=network-online.target
-After=network-online.target local-fs.target immich-db.service immich-redis.service
+Wants=network-online.target immich-db.service immich-redis.service immich-ml.service
+After=network-online.target immich-db.service immich-redis.service immich-ml.service
 
 [Container]
 ContainerName=immich-server
-Image=ghcr.io/immich-app/immich-server:v2
+Image=ghcr.io/immich-app/immich-server:release
 AutoUpdate=registry
 Pod=immich.pod
 GroupAdd=keep-groups

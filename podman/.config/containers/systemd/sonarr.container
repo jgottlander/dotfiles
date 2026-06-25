@@ -11,16 +11,17 @@ User=0
 UserNS=keep-id:uid=1000,gid=1000
 GroupAdd=keep-groups
 
+PublishPort=8989:8989
+
 Environment=PUID=1000
 Environment=PGID=1000
 Environment=UMASK=002
 Environment=TZ=Europe/Stockholm
 
-Network=gluetun.container
-
 Volume=sonarr_data:/config
 Volume=/mnt/media/Serier:/data/tv:z
 Volume=/mnt/externa/Nedladdningar:/data/downloads:z
+Volume=/mnt/externa/Papperskorg:/data/recycling
 
 [Service]
 Restart=on-failure

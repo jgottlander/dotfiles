@@ -7,10 +7,10 @@ After=network-online.target local-fs.target
 ContainerName=bazarr
 Image=ghcr.io/hotio/bazarr
 AutoUpdate=registry
-Network=gluetun.container
 User=0
 UserNS=keep-id:uid=1000,gid=1000
 GroupAdd=keep-groups
+PublishPort=6767:6767
 
 Environment=PUID=1000
 Environment=PGID=1000
@@ -18,7 +18,7 @@ Environment=TZ=Europe/Stockholm
 Environment=UMASK=002
 Environment=WEBUI_PORTS=6767/tcp
 
-Volume=bazaar_data:/config
+Volume=bazarr_data:/config
 Volume=/mnt/media/Filmer:/data/movies:z
 Volume=/mnt/media/Serier:/data/tv:z
 

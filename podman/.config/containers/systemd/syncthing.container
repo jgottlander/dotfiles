@@ -9,10 +9,11 @@ Image=docker.io/syncthing/syncthing:latest
 AutoUpdate=registry
 UserNS=keep-id
 GroupAdd=keep-groups
-PublishPort=8384:8384
+PublishPort=8384:8384/tcp
 PublishPort=22000:22000/tcp
 PublishPort=22000:22000/udp
 PublishPort=21027:21027/udp
+HostName=nasen
 
 Volume=syncthing_data:/var/syncthing
 Volume=/mnt/externa/Data:/data:z

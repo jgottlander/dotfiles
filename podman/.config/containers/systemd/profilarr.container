@@ -1,26 +1,23 @@
 [Unit]
-Description=Prowlarr container
-Wants=network-online.target
+Description=Profilarr container
 After=network-online.target local-fs.target
 
 [Container]
-ContainerName=prowlarr
-Image=ghcr.io/hotio/prowlarr
+ContainerName=profilarr
+Image=ghcr.io/dictionarry-hub/profilarr:latest
 AutoUpdate=registry
-User=0
-UserNS=keep-id:uid=1000,gid=1000
+PublishPort=6868:6868
 GroupAdd=keep-groups
-
-PublishPort=9696:9696
-
+UserNS=keep-id
 Environment=PUID=1000
 Environment=PGID=1000
 Environment=TZ=Europe/Stockholm
-
-Volume=prowlarr_data:/config
+#Environment=PARSER_HOST=parser
+#Environment=PARSER_PORT=5000
+Volume=profilarr_data:/config
 
 [Service]
-Restart=on-failure
+Restart=always
 TimeoutStartSec=900
 
 [Install]

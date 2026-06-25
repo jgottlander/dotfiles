@@ -10,10 +10,12 @@ Pod=nextcloud.pod
 GroupAdd=keep-groups
 Volume=nextcloud-redis_data:/data
 Exec=redis-server --requirepass nextcloud
+Environment=PUID=1000
+Environment=PGID=1000
 
 [Service]
 Restart=on-failure
 TimeoutStartSec=900
 
 [Install]
-WantedBy=default.target multi-user.target
+WantedBy=default.target

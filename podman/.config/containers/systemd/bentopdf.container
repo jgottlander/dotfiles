@@ -4,15 +4,17 @@ After=network-online.target local-fs.target
 
 [Container]
 ContainerName=bentopdf
-Image=docker.io/bentopdf/bentopdf-simple:latest
+Image=ghcr.io/alam00000/bentopdf-simple:latest
 AutoUpdate=registry
 PublishPort=3333:8080
 UserNS=keep-id
 GroupAdd=keep-groups
+Environment=SIMPLE_MODE=true
+Environment=DISABLE_IPV6=true
 
 [Service]
 Restart=always
 TimeoutStartSec=900
 
 [Install]
-WantedBy=multi-user.target default.target
+WantedBy=default.target

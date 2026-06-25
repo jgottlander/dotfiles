@@ -10,8 +10,9 @@ AutoUpdate=registry
 User=0
 UserNS=keep-id:uid=1000,gid=1000
 GroupAdd=keep-groups
-Network=gluetun.container
-Volume=/mnt/externa/Nedladdningar:/data/downloads:z
+PublishPort=5656:5656
+
+Volume=/mnt/externa/Nedladdningar:/data/downloads
 Volume=unpackerr_data:/config
 
 Environment=TZ=Europe/Stockholm
@@ -20,9 +21,9 @@ Environment=PGID=1000
 Environment=UMASK=002
 
 Environment=UN_LOG_FILE=/data/downloads/unpackerr.log
-Environment=UN_SONARR_0_URL=http://localhost:8989
+Environment=UN_SONARR_0_URL=http://host.containers.internal:8989
 Environment=UN_SONARR_0_API_KEY=6346a5b51e2b45d084e9cea10d0d6dec
-Environment=UN_RADARR_0_URL=http://localhost:7878
+Environment=UN_RADARR_0_URL=http://host.containers.internal:7878
 Environment=UN_RADARR_0_API_KEY=df28a057ead54840bb4ab3921e9ad528
 Environment=UN_WEBSERVER_METRICS=true
 

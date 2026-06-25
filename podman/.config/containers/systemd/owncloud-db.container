@@ -1,0 +1,30 @@
+[Unit]
+Description=MariaDB for Owncloud
+After=local-fs.target network.target
+Requires=podman.socket
+
+[Container]
+ContainerName=owncloud-db
+Image=docker.io/library/mariadb:10.11
+AutoUpdate=registry
+Volume=owncloud-db_data:/var/lib/mysql
+Pod=owncloud.pod
+GroupAdd=keep-groups
+Environment=MYSQL_DATABASE=owncloud
+Environment=MYSQL_USER=owncloud
+Environment=MYSQL_PASSWORD=owncloud
+Environment=MYSQL_ROOT_PASSWORD=owncloud
+Environment=MARIADB_AUTO_UPGRADE=1
+Exec=mariadbd --max-allowed-packet=128M --innodb-log-file-size=64M
+
+HealthCmd=mysqladmin ping -u root --password=owncloud
+HealthInterval=10s
+HealthTimeout=5s
+HealthRetries=5
+
+[Service]
+Restart=on-failure
+TimeoutStartSec=900
+
+[Install]
+WantedBy=default.target

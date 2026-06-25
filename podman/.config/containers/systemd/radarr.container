@@ -7,10 +7,10 @@ After=network-online.target local-fs.target
 ContainerName=radarr
 Image=ghcr.io/hotio/radarr
 AutoUpdate=registry
-Network=gluetun.container
 User=0
 UserNS=keep-id:uid=1000,gid=1000
 GroupAdd=keep-groups
+PublishPort=7878:7878
 
 Environment=PUID=1000
 Environment=PGID=1000
@@ -20,6 +20,7 @@ Environment=UMASK=002
 Volume=radarr_data:/config
 Volume=/mnt/media/Filmer:/data/movies
 Volume=/mnt/externa/Nedladdningar:/data/downloads
+Volume=/mnt/externa/Papperskorg:/data/recycling
 
 [Service]
 Restart=on-failure

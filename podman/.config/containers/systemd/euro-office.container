@@ -1,0 +1,19 @@
+[Unit]
+Description=Collabora Online Development Edition
+After=network-online.target local-fs.target
+
+[Container]
+ContainerName=euro-office
+Image=ghcr.io/euro-office/documentserver:latest
+AutoUpdate=registry
+#Pod=nextcloud.pod
+#GroupAdd=keep-groups
+Environment=JWT_SECRET=*AUJSjjfwm*cmdy4wgFr
+PublishPort=9980:80
+
+[Service]
+Restart=always
+TimeoutStartSec=900
+
+[Install]
+WantedBy=default.target
