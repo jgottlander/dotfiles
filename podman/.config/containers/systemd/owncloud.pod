@@ -6,7 +6,7 @@ After=network-online.target local-fs.target
 [Pod]
 PodName=owncloud
 PublishPort=8085:8080
-UserNS=keep-id:uid=1000,gid=1000
+#UserNS=keep-id:uid=1000,gid=1000
 
 [Service]
 Restart=on-failure

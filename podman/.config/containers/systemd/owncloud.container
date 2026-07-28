@@ -7,8 +7,8 @@ ContainerName=owncloud-server
 Image=docker.io/owncloud/server:latest
 AutoUpdate=registry
 Pod=owncloud.pod
-User=0
-GroupAdd=keep-groups
+#User=0
+#GroupAdd=keep-groups
 Volume=/mnt/externa/Data/owncloud:/mnt/data
 Environment=OWNCLOUD_DOMAIN=localhost:8085
 Environment=OWNCLOUD_TRUSTED_DOMAINS=owncloud.gottlander.eu
