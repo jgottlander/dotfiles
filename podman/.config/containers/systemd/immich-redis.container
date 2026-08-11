@@ -14,7 +14,7 @@ HealthInterval=10s
 HealthTimeout=5s
 HealthRetries=3
 
-Volume=immich-redis_data:/data
+Volume=immich-redis_data:/data:Z
 
 [Service]
 Restart=on-failure

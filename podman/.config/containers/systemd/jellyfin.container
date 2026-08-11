@@ -21,10 +21,10 @@ Environment=UMASK=002
 Environment=TZ=Europe/Stockholm
 Environment=WEBUI_PORTS=8096/tcp
 
-Volume=jellyfin_data:/config
-Volume=jellyfin_cache:/cache
-Volume=/mnt/media:/data
-Volume=/mnt/backup/jellyfin:/backup
+Volume=jellyfin_data:/config:Z
+Volume=jellyfin_cache:/cache:Z
+Volume=/mnt/externa/Media:/data:z
+Volume=/mnt/externa/Backup/jellyfin:/backup:z
 AddDevice=/dev/dri:/dev/dri
 
 [Service]

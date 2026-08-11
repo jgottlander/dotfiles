@@ -1,0 +1,30 @@
+[Unit]
+Description=Speedtest Tracker
+After=network-online.target local-fs.target
+
+[Container]
+ContainerName=speedtest-tracker
+Image=lscr.io/linuxserver/speedtest-tracker:latest
+AutoUpdate=registry
+PublishPort=8084:80
+User=0:0
+UserNS=keep-id:uid=1000,gid=1000
+GroupAdd=keep-groups
+
+Volume=speedtest_data:/config:Z
+Volume=/etc/localtime:/etc/localtime:ro
+Environment=PUID=1000
+Environment=PGID=1000
+Environment=APP_KEY=base64:YZb4GDPrJLtY7ytTysg2n//Ze/8T4c14tQdRbWE7sKA=
+Environment=APP_URL=
+Environment=DB_CONNECTION=sqlite
+Environment=SPEEDTEST_SCHEDULE="5 6 * * *"
+Environment=SPEEDTEST_SERVERS=45936
+#Environment=APP_DEBUG=true
+
+[Service]
+Restart=always
+TimeoutStartSec=900
+
+[Install]
+WantedBy=default.target

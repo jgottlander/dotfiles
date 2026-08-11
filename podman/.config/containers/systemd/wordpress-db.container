@@ -1,0 +1,28 @@
+[Unit]
+Description=MariaDB for Wordpress
+After=local-fs.target network.target
+Requires=podman.socket
+
+[Container]
+ContainerName=wordpress-db
+Image=docker.io/library/mariadb:11.4
+AutoUpdate=registry
+Pod=wordpress.pod
+GroupAdd=keep-groups
+
+Environment=PUID=1000
+Environment=PGID=1000
+Environment=MYSQL_DATABASE=wordpress
+Environment=MYSQL_USER=wordpress
+Environment=MYSQL_PASSWORD=wordpress
+Environment=MYSQL_ROOT_PASSWORD=wordpress
+Environment=TZ=Europe/Stockholm
+
+Volume=wordpress-db_data:/var/lib/mysql:Z
+
+[Service]
+Restart=on-failure
+TimeoutStartSec=900
+
+[Install]
+WantedBy=default.target

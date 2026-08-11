@@ -7,9 +7,9 @@ Requires=podman.socket
 ContainerName=nextcloud-db
 Image=docker.io/library/mariadb:10.11
 AutoUpdate=registry
-Volume=nextcloud-db_data:/var/lib/mysql
 Pod=nextcloud.pod
 GroupAdd=keep-groups
+
 Environment=PUID=1000
 Environment=PGID=1000
 Environment=MYSQL_DATABASE=nextcloud
@@ -17,6 +17,9 @@ Environment=MYSQL_USER=nextcloud
 Environment=MYSQL_PASSWORD=nextcloud
 Environment=MYSQL_ROOT_PASSWORD=nextcloud
 Environment=TZ=Europe/Stockholm
+
+Volume=nextcloud-db_data:/var/lib/mysql:Z
+Volume=/mnt/externa/Backup/podman/rootless:/backup:z
 
 [Service]
 Restart=on-failure

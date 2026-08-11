@@ -15,7 +15,7 @@ PublishPort=22000:22000/udp
 PublishPort=21027:21027/udp
 HostName=nasen
 
-Volume=syncthing_data:/var/syncthing
+Volume=syncthing_data:/var/syncthing:Z
 Volume=/mnt/externa/Data:/data:z
 
 [Service]

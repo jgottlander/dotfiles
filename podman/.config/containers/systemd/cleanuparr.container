@@ -6,8 +6,6 @@ After=local-fs.target network.target
 ContainerName=cleanuparr
 Image=ghcr.io/cleanuparr/cleanuparr:latest
 AutoUpdate=registry
-Network=gluetun.container
-Volume=cleanuparr_data:/config
 User=0
 UserNS=keep-id:uid=1000,gid=1000
 GroupAdd=keep-groups
@@ -15,6 +13,7 @@ Environment=PORT=11011
 Environment=PUID=1000
 Environment=PGID=1000
 Environment=TZ=Europe/Stockholm
+Volume=cleanuparr_data:/config:Z
 
 [Service]
 Restart=on-failure

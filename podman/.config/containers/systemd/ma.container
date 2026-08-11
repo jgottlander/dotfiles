@@ -9,10 +9,10 @@ AutoUpdate=registry
 Network=host
 UserNS=keep-id
 GroupAdd=keep-groups
-
-Volume=music-assistant_data:/data
-Volume=/mnt/media/Musik:/media
 AddCapability=SYS_ADMIN,DAC_READ_SEARCH
+
+Volume=music-assistant_data:/data:Z
+Volume=/mnt/externa/Media/Musik:/media:z
 
 [Service]
 Restart=always

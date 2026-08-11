@@ -1,0 +1,34 @@
+[Unit]
+Description=Romm container
+After=network-online.target local-fs.target romm-db.service
+
+[Container]
+ContainerName=romm
+Image=docker.io/rommapp/romm:latest
+AutoUpdate=registry
+Pod=romm.pod
+GroupAdd=keep-groups
+
+Volume=/etc/localtime:/etc/localtime:ro
+
+Volume=romm_data:/romm:Z
+Volume=romm_resources:/romm/resources:Z
+Volume=romm_redis_data:/redis-data:Z
+Volume=/mnt/externa/Data/Emulation/:/romm/library:z
+Volume=/mnt/externa/Data/Emulation/saves:/romm/assets:z
+
+Environment=DB_HOST=romm-db
+Environment=DB_NAME=romm
+Environment=DB_USER=romm
+Environment=DB_PASSWD=romm
+Environment=ROMM_AUTH_SECRET_KEY=e1eea0d63ac740011bcaf3aa03ac8773a4163fcf26c64be10c3341d79f537e77
+Environment=SCREENSCRAPER_USER=alphonce
+Environment=SCREENSCRAPER_PASSWORD=p3TtG3ecqvE9aB6vy64K
+Environment=RETROACHIEVEMENTS_API_KEY=9rNPtejZrWaIC1BGQ4X7vkSPZe8M8noX
+
+[Service]
+Restart=always
+TimeoutStartSec=900
+
+[Install]
+WantedBy=default.target

@@ -1,0 +1,16 @@
+[Unit]
+Description=Gottlander.eu webside
+Wants=network-online.target
+After=network-online.target local-fs.target
+
+[Pod]
+PodName=wordpress
+PublishPort=8089:80
+UserNS=keep-id
+
+[Service]
+Restart=on-failure
+TimeoutStartSec=900
+
+[Install]
+#WantedBy=default.target

@@ -10,8 +10,8 @@ AutoUpdate=registry
 Pod=nextcloud.pod
 GroupAdd=keep-groups
 #User=0
-Volume=nextcloud_data:/var/www/html
-Volume=/mnt/externa/Data/nextcloud:/var/www/html/data
+Volume=nextcloud_data:/var/www/html:Z
+Volume=/mnt/externa/Data/nextcloud:/var/www/html/data:Z
 AddDevice=/dev/dri:/dev/dri
 
 Environment=MYSQL_HOST=nextcloud-db

@@ -9,10 +9,11 @@ AutoUpdate=registry
 Pod=nextcloud.pod
 AddCapability=CAP_NET_ADMIN
 Environment=EMAIL=josef.gottlander@pm.me
+GroupAdd=keep-groups
 
-Volume=./Caddyfile:/etc/caddy/Caddyfile
-Volume=caddy_data:/data
-Volume=nextcloud_data:/var/www/html
+Volume=./Caddyfile:/etc/caddy/Caddyfile:z
+Volume=caddy_data:/data:Z
+Volume=nextcloud_data:/var/www/html:z
 Notify=true
 
 [Service]

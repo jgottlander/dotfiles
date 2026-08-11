@@ -1,0 +1,27 @@
+[Unit]
+Description=Jackett container
+After=network-online.target local-fs.target
+
+[Container]
+ContainerName=jackett
+Image=ghcr.io/hotio/jackett
+AutoUpdate=registry
+User=0:0
+UserNS=keep-id:uid=1000,gid=1000
+GroupAdd=keep-groups
+PublishPort=9117:9117
+
+Environment=PUID=1000
+Environment=PGID=1000
+Environment=UMASK=002
+Environment=WEBUI_PORTS=9117/tcp
+
+Volume=/etc/localtime:/etc/localtime:ro
+Volume=jackett_data:/config:Z
+
+[Service]
+Restart=always
+TimeoutStartSec=900
+
+[Install]
+WantedBy=default.target

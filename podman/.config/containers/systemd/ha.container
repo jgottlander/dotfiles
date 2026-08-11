@@ -7,18 +7,19 @@ After=network-online.target local-fs.target
 ContainerName=home-assistant
 Image=ghcr.io/home-assistant/home-assistant:stable
 AutoUpdate=registry
-UserNS=host
+UserNS=keep-id
 GroupAdd=keep-groups
-Volume=ha_data:/config
-Volume=/run/dbus:/run/dbus:ro
 Network=host
 AddDevice=/dev/ttyACM0:/dev/ttyACM0
-#PodmanArgs=--privileged
-AddCapability=NET_ADMIN NET_RAW
 
-Environment=TZ=Europe/Stockholm
-Environment=PUID=1000
-Environment=PGID=1000
+PodmanArgs=--privileged
+AddCapability=NET_ADMIN,NET_RAW
+#SecurityLabelType=ha_policy.process
+SecurityLabelDisable=true
+
+Volume=/etc/localtime:/etc/localtime:ro
+Volume=ha_data:/config:Z
+Volume=/run/dbus:/run/dbus:ro
 
 [Service]
 Restart=on-failure

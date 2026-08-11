@@ -15,7 +15,7 @@ Environment=POSTGRES_USER=postgres
 Environment=POSTGRES_DB=immich
 Environment=POSTGRES_INITDB_ARGS='--data-checksums'
 
-Volume=immich-db_data:/var/lib/postgresql
+Volume=immich-db_data:/var/lib/postgresql:Z
 
 [Service]
 Restart=on-failure

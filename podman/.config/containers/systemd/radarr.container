@@ -17,10 +17,10 @@ Environment=PGID=1000
 Environment=TZ=Europe/Stockholm
 Environment=UMASK=002
 
-Volume=radarr_data:/config
-Volume=/mnt/media/Filmer:/data/movies
-Volume=/mnt/externa/Nedladdningar:/data/downloads
-Volume=/mnt/externa/Papperskorg:/data/recycling
+Volume=radarr_data:/config:Z
+Volume=/mnt/externa/Media/Filmer:/data/movies:z
+Volume=/mnt/externa/Nedladdningar:/data/downloads:z
+Volume=/mnt/externa/Papperskorg:/data/recycling:z
 
 [Service]
 Restart=on-failure

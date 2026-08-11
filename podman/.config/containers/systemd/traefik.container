@@ -1,0 +1,19 @@
+[Unit]
+Description=Traefik container
+After=network-online.target local-fs.target
+
+[Container]
+ContainerName=traefik
+Image=docker.io/library/traefik:v3.7
+AutoUpdate=registry
+PublishPort=80:80
+PublishPort=443:443
+Volume=/run/user/1000/podman/podman.sock:/var/run/docker.sock:ro
+SecurityLabelType=traefik_policy.process
+
+[Service]
+Restart=always
+TimeoutStartSec=900
+
+[Install]
+WantedBy=default.target

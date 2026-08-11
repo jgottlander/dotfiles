@@ -1,0 +1,27 @@
+[Unit]
+Description=MariaDB for Romm
+After=network-online.target local-fs.target
+
+[Container]
+ContainerName=romm-db
+Image=docker.io/library/mariadb:11.4
+AutoUpdate=registry
+Pod=romm.pod
+GroupAdd=keep-groups
+
+Volume=romm-db_data:/var/lib/mysql:Z
+
+Environment=MARIADB_ROOT_PASSWORD=skabb123
+Environment=MARIADB_DATABASE=romm
+Environment=MARIADB_USER=romm
+Environment=MARIADB_PASSWORD=romm
+
+
+
+
+[Service]
+Restart=always
+TimeoutStartSec=900
+
+[Install]
+WantedBy=default.target

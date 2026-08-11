@@ -16,7 +16,8 @@ Environment=WEBUI_PORT=5055/tcp
 Environment=PUID=1000
 Environment=PGID=1000
 Environment=UMASK=002
-Volume=seerr_data:/config
+
+Volume=seerr_data:/config:Z
 
 [Service]
 Restart=on-failure

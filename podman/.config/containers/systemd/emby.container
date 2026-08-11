@@ -10,9 +10,11 @@ AutoUpdate=registry
 UserNS=keep-id
 User=1000:1000
 PublishPort=8096:8096/tcp
-Volume=embyserver_data:/config
-Volume=/mnt/media:/media
-Volume=/mnt/backup/emby:/backup
+
+Volume=embyserver_data:/config:Z
+Volume=/mnt/externa/Media:/media:z
+Volume=/mnt/externa/Backup/emby:/backup:z
+
 AddDevice=/dev/dri
 
 [Service]

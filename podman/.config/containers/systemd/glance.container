@@ -8,8 +8,8 @@ Image=docker.io/glanceapp/glance:latest
 AutoUpdate=registry
 PublishPort=8082:8080
 
-Volume=glance_data:/app/config
-Volume=glance_assets:/app/assets
+Volume=glance_data:/app/config:Z
+Volume=glance_assets:/app/assets:Z
 Volume=/run/user/1000/podman/podman.sock:/var/run/docker.sock:ro
 Environment=MY_SECRET_TOKEN=123456
 

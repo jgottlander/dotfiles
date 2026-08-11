@@ -12,8 +12,8 @@ UserNS=keep-id:uid=1000,gid=1000
 GroupAdd=keep-groups
 PublishPort=5656:5656
 
-Volume=/mnt/externa/Nedladdningar:/data/downloads
-Volume=unpackerr_data:/config
+Volume=/mnt/externa/Nedladdningar:/data/downloads:z
+Volume=unpackerr_data:/config:Z
 
 Environment=TZ=Europe/Stockholm
 Environment=PUID=1000

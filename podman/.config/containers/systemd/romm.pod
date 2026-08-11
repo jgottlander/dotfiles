@@ -1,0 +1,15 @@
+[Unit]
+Description=Romm stack
+Wants=network-online.target
+After=network-online.target local-fs.target
+
+[Pod]
+PodName=romm
+PublishPort=8089:8080
+UserNS=keep-id
+
+[Service]
+Restart=on-failure
+
+[Install]
+WantedBy=default.target

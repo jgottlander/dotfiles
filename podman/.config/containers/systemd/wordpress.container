@@ -1,0 +1,18 @@
+[Unit]
+Description=Wordpress container
+After=network-online.target local-fs.target
+
+[Container]
+ContainerName=wordpress
+Image=docker.io/library/wordpress
+AutoUpdate=registry
+Pod=wordpress.pod
+GroupAdd=keep-groups
+Volume=wordpress_data:/var/www/html
+
+[Service]
+Restart=always
+TimeoutStartSec=900
+
+[Install]
+WantedBy=default.target

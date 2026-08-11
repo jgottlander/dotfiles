@@ -18,10 +18,10 @@ Environment=UMASK=002
 
 PublishPort=8686:8686
 
-Volume=lidarr_data:/config
-Volume=/mnt/media/Musik:/data/music
-Volume=/mnt/externa/Nedladdningar:/data/downloads
-Volume=/mnt/externa/Papperskorg:/data/recycling
+Volume=lidarr_data:/config:Z
+Volume=/mnt/externa/Media/Musik:/data/music:z
+Volume=/mnt/externa/Nedladdningar:/data/downloads:z
+Volume=/mnt/externa/Papperskorg:/data/recycling:z
 
 [Service]
 Restart=on-failure

@@ -18,9 +18,9 @@ Environment=TZ=Europe/Stockholm
 Environment=UMASK=002
 Environment=WEBUI_PORTS=6767/tcp
 
-Volume=bazarr_data:/config
-Volume=/mnt/media/Filmer:/data/movies:z
-Volume=/mnt/media/Serier:/data/tv:z
+Volume=bazarr_data:/config:Z
+Volume=/mnt/externa/Media/Filmer:/data/movies:z
+Volume=/mnt/externa/Media/Serier:/data/tv:z
 
 [Service]
 Restart=on-failure

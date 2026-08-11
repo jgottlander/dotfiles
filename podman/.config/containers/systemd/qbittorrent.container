@@ -22,8 +22,8 @@ Environment=TZ=Europe/Stockholm
 Environment=WEBUI_PORTS=8081/tcp
 Environment=TORRENTIG_PORT=6881
 
-Volume=qbittorrent_data:/config
-Volume=/mnt/externa/Nedladdningar:/data/downloads
+Volume=qbittorrent_data:/config:Z
+Volume=/mnt/externa/Nedladdningar:/data/downloads:z
 
 [Service]
 Restart=on-failure

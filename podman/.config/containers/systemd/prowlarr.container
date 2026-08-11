@@ -17,7 +17,7 @@ Environment=PUID=1000
 Environment=PGID=1000
 Environment=TZ=Europe/Stockholm
 
-Volume=prowlarr_data:/config
+Volume=prowlarr_data:/config:Z
 
 [Service]
 Restart=on-failure

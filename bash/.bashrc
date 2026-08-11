@@ -152,4 +152,3 @@ ip -o -6 -br a|grep -v '^lo'|sed 's/^/ /'|sed 's/\/..//'
 fi
 printf "%`tput cols`s"|tr ' ' '#'
 
-. "$HOME/.cargo/env"

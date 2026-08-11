@@ -14,7 +14,7 @@ Environment=PGID=1000
 Environment=TZ=Europe/Stockholm
 #Environment=PARSER_HOST=parser
 #Environment=PARSER_PORT=5000
-Volume=profilarr_data:/config
+Volume=profilarr_data:/config:Z
 
 [Service]
 Restart=always
