@@ -143,3 +143,25 @@ fi
 
 eval "$(starship init bash)"
 
+diskusage=$(df -H -x squashfs -x tmpfs -x devtmpfs --total|grep total)
+
+printf "%`tput cols`s"|tr ' ' '#'
+echo " Hostname: $(hostname)"
+echo " Distro: $(lsb_release -s -d)"
+echo
+echo " CPU: $(cat /proc/cpuinfo | grep 'model name' | head -1 | cut -d':' -f2)"
+echo " Disk: $(echo $diskusage | awk '{ a = $2 } END { print a }'|sed 's/G/ G/'|sed 's/T/ T/')"
+echo " Memory: $(free -m | head -n 2 | tail -n 1 | awk {'print $2'}) M"
+echo " Swap: $(free -m | tail -n 1 | awk {'print $2'}) M"
+echo
+
+if which ip >/dev/null
+then
+echo " IP V4 Networks"
+ip -o -4 -br a|grep -v '^lo'|sed 's/^/ /'|sed 's/\/..//'
+echo
+echo " IP V6 Networks"
+ip -o -6 -br a|grep -v '^lo'|sed 's/^/ /'|sed 's/\/..//'
+fi
+printf "%`tput cols`s"|tr ' ' '#'
+
