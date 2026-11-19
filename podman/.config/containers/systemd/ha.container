@@ -11,11 +11,8 @@ UserNS=keep-id
 GroupAdd=keep-groups
 Network=host
 AddDevice=/dev/ttyACM0:/dev/ttyACM0
-
-PodmanArgs=--privileged
 AddCapability=NET_ADMIN,NET_RAW
-#SecurityLabelType=ha_policy.process
-SecurityLabelDisable=true
+PodmanArgs=--privileged
 
 Volume=/etc/localtime:/etc/localtime:ro
 Volume=ha_data:/config:Z

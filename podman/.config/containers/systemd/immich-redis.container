@@ -9,15 +9,18 @@ Image=docker.io/valkey/valkey:9
 Pod=immich.pod
 GroupAdd=keep-groups
 
-HealthCmd=redis-cli ping || exit 1
+HealthCmd=redis-cli ping | grep -q PONG || exit 1
 HealthInterval=10s
 HealthTimeout=5s
 HealthRetries=3
 
 Volume=immich-redis_data:/data:Z
 
+Label=glance.parent=immich
+Label=glance.name=Redis
+
 [Service]
-Restart=on-failure
+Restart=always
 TimeoutStartSec=900
 
 [Install]

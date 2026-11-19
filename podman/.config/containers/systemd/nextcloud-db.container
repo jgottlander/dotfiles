@@ -21,9 +21,12 @@ Environment=TZ=Europe/Stockholm
 Volume=nextcloud-db_data:/var/lib/mysql:Z
 Volume=/mnt/externa/Backup/podman/rootless:/backup:z
 
+Label=glance.parent=nextcloud
+Label=glance.name=DB
+
 [Service]
 Restart=on-failure
 TimeoutStartSec=900
 
 [Install]
-WantedBy=default.target
+#WantedBy=default.target

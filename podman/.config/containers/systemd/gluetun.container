@@ -17,14 +17,18 @@ PublishPort=8081:8081
 PublishPort=6881:6881
 PublishPort=6881:6881/udp
 
+# slskd
+PublishPort=5030:5030
+PublishPort=5031:5031
+
 Environment=TZ=Europe/Stockholm
-Environment=VPN_SERVICE_PROVIDER=mullvad
+Environment=BLOCK_MALICIOUS=off
+Environment=VPN_SERVICE_PROVIDER=protonvpn
 Environment=VPN_TYPE=wireguard
-Environment=WIREGUARD_PRIVATE_KEY=MFb/c20WjtDYyStSMsdwRJgLfxbZ6B4QvQUt+k7NLlo=
-Environment=WIREGUARD_ADDRESSES=10.74.239.236/32
-Environment=SERVER_CITIES=Malmö
-Environment=UPDATER_PERIOD=24h
-Environment=FIREWALL_VPN_INPUT_PORTS=6881
+Secret=protonvpn_privatekey,type=env,target=WIREGUARD_PRIVATE_KEY
+Environment=SERVER_COUNTRIES=Sweden
+Environment=VPN_PORT_FORWARDING=on
+EnvironmentFile=./gluetun.env
 
 [Service]
 Restart=on-failure

@@ -1,0 +1,31 @@
+[Unit]
+Description=Dropped Needle
+After=network-online.target local-fs.target
+
+[Container]
+ContainerName=droppedneedle
+Image=docker.io/droppedneedle/droppedneedle:latest
+AutoUpdate=registry
+UserNS=keep-id
+GroupAdd=keep-groups
+
+PublishPort=8688:8688
+
+Volume=droppedneedle_data:/app/config
+Volume=droppedneedle_cache:/app/cache
+Volume=droppedneedle_plugins:/app/plugins
+Volume=/mnt/externa/media:/data:rw
+
+Environment=PUID=1000
+Environment=PGID=1000
+Environment=UMASK=002
+Environment=PORT=8688
+Environment=TZ=Europe/Stockholm
+Environment=SLSKD_DOWNLOADS_PATH=/data/downloads
+
+[Service]
+Restart=always
+TimeoutStartSec=900
+
+[Install]
+#WantedBy=default.target

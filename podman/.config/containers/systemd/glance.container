@@ -10,7 +10,10 @@ PublishPort=8082:8080
 
 Volume=glance_data:/app/config:Z
 Volume=glance_assets:/app/assets:Z
-Volume=/run/user/1000/podman/podman.sock:/var/run/docker.sock:ro
+#Volume=/run/user/1000/podman/podman.sock:/var/run/docker.sock:ro
+Volume=/etc/localtime:/etc/localtime:ro
+Volume=/mnt/externa:/mnt/externa:ro
+
 Environment=MY_SECRET_TOKEN=123456
 
 [Service]

@@ -12,4 +12,4 @@ UserNS=keep-id
 Restart=on-failure
 
 [Install]
-WantedBy=default.target
+#WantedBy=default.target

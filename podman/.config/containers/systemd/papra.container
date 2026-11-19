@@ -4,13 +4,17 @@ After=network-online.target local-fs.target
 
 [Container]
 ContainerName=papra
-Image=ghcr.io/papra-hq/papra:latest
+Image=ghcr.io/papra-hq/papra:latest-rootless
 AutoUpdate=registry
-#UserNS=keep-id
-#GroupAdd=keep-groups
-#User=1000:1000
-Environment=APP_BASE_URL=http://nasen.local:1221
 PublishPort=1221:1221
+UserNS=keep-id
+GroupAdd=keep-groups
+User=1000:1000
+
+Environment=APP_BASE_URL=http://nasen.local:1221
+Environment=AUTH_SECRET=44e79082bef43614867e050f3ec328f8ddfb8da5d143dacb32c73de949240b4a3870cef74453a560e02517786849091b
+
+Volume=/etc/localtime:/etc/localtime:ro
 Volume=papra_data:/app/app-data
 
 [Service]

@@ -26,9 +26,13 @@ Environment=SCREENSCRAPER_USER=alphonce
 Environment=SCREENSCRAPER_PASSWORD=p3TtG3ecqvE9aB6vy64K
 Environment=RETROACHIEVEMENTS_API_KEY=9rNPtejZrWaIC1BGQ4X7vkSPZe8M8noX
 
+Label=glance.name=RomM
+Label=glance.icon=si:romm-dark
+Label=glance.id=romm
+
 [Service]
 Restart=always
 TimeoutStartSec=900
 
 [Install]
-WantedBy=default.target
+#WantedBy=default.target

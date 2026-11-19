@@ -24,9 +24,13 @@ Environment=TZ=Europe/Stockholm
 Environment=APACHE_RUN_USER=1000
 Environment=APACHE_RUN_GROUP=1000
 
+Label=glance.name=Nextcloud
+Label=glance.icon=si:nextcloud
+Label=glance.id=nextcloud
+
 [Service]
 Restart=on-failure
 TimeoutStartSec=900
 
 [Install]
-WantedBy=default.target
+#WantedBy=default.target

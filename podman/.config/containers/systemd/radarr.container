@@ -5,22 +5,18 @@ After=network-online.target local-fs.target
 
 [Container]
 ContainerName=radarr
-Image=ghcr.io/hotio/radarr
+Image=lscr.io/linuxserver/radarr:latest
 AutoUpdate=registry
-User=0
-UserNS=keep-id:uid=1000,gid=1000
+UserNS=keep-id
 GroupAdd=keep-groups
 PublishPort=7878:7878
 
 Environment=PUID=1000
 Environment=PGID=1000
 Environment=TZ=Europe/Stockholm
-Environment=UMASK=002
 
-Volume=radarr_data:/config:Z
-Volume=/mnt/externa/Media/Filmer:/data/movies:z
-Volume=/mnt/externa/Nedladdningar:/data/downloads:z
-Volume=/mnt/externa/Papperskorg:/data/recycling:z
+Volume=radarr_data:/config
+Volume=/mnt/externa/media:/data
 
 [Service]
 Restart=on-failure

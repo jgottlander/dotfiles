@@ -5,14 +5,14 @@ After=network-online.target local-fs.target
 
 [Container]
 ContainerName=unpackerr
-Image=ghcr.io/hotio/unpackerr
+Image=docker.io/golift/unpackerr
 AutoUpdate=registry
 User=0
 UserNS=keep-id:uid=1000,gid=1000
 GroupAdd=keep-groups
 PublishPort=5656:5656
 
-Volume=/mnt/externa/Nedladdningar:/data/downloads:z
+Volume=/mnt/externa/media/downloads:/data/downloads:z
 Volume=unpackerr_data:/config:Z
 
 Environment=TZ=Europe/Stockholm

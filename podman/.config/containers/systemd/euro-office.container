@@ -7,13 +7,17 @@ ContainerName=euro-office
 Image=ghcr.io/euro-office/documentserver:latest
 AutoUpdate=registry
 #Pod=nextcloud.pod
-#GroupAdd=keep-groups
-Environment=JWT_SECRET=*AUJSjjfwm*cmdy4wgFr
+GroupAdd=keep-groups
+Environment=JWT_SECRET=dB8N8xvHK1dYrRpJYsMjfttxt5ySW6JrtniPARPqZRl
 PublishPort=9980:80
+
+Volume=euro-office_data:/var/lib/euro-office/documentserver
+Volume=euro-office_logs:/var/log/euro-office/documentserver
+Volume=euro-office_config:/etc/euro-office/documentserver
 
 [Service]
 Restart=always
 TimeoutStartSec=900
 
 [Install]
-WantedBy=default.target
+#WantedBy=default.target

@@ -1,0 +1,19 @@
+[Unit]
+Description=Actual Budget
+After=network-online.target local-fs.target
+
+[Container]
+ContainerName=actualbudget
+Image=docker.io/actualbudget/actual-server:latest
+AutoUpdate=registry
+
+PublishPort=5006:5006
+
+Volume=actual_data:/data
+
+[Service]
+Restart=always
+TimeoutStartSec=900
+
+[Install]
+#WantedBy=default.target

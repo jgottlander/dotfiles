@@ -5,23 +5,19 @@ After=network-online.target local-fs.target
 
 [Container]
 ContainerName=sonarr
-Image=ghcr.io/hotio/sonarr
+Image=ghcr.io/linuxserver/sonarr:latest
 AutoUpdate=registry
-User=0
-UserNS=keep-id:uid=1000,gid=1000
+UserNS=keep-id
 GroupAdd=keep-groups
 
 PublishPort=8989:8989
 
 Environment=PUID=1000
 Environment=PGID=1000
-Environment=UMASK=002
 Environment=TZ=Europe/Stockholm
 
-Volume=sonarr_data:/config:Z
-Volume=/mnt/externa/Media/Serier:/data/tv:z
-Volume=/mnt/externa/Nedladdningar:/data/downloads:z
-Volume=/mnt/externa/Papperskorg:/data/recycling:z
+Volume=sonarr_data:/config
+Volume=/mnt/externa/media:/data
 
 [Service]
 Restart=on-failure

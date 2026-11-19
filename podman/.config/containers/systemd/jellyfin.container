@@ -4,15 +4,15 @@ After=local-fs.target network.target
 
 [Container]
 ContainerName=jellyfin
-Image=ghcr.io/hotio/jellyfin
+Image=ghcr.io/jellyfin/jellyfin
 AutoUpdate=registry
 
 #Network=host
 PublishPort=8096:8096/tcp
 PublishPort=7359:7359/udp
 HostName=nasen
-User=0:0
-UserNS=keep-id:uid=1000,gid=1000
+#User=0:0
+UserNS=keep-id
 GroupAdd=keep-groups
 
 Environment=PUID=1000
@@ -23,9 +23,13 @@ Environment=WEBUI_PORTS=8096/tcp
 
 Volume=jellyfin_data:/config:Z
 Volume=jellyfin_cache:/cache:Z
-Volume=/mnt/externa/Media:/data:z
+Volume=/mnt/externa/media:/data:z
 Volume=/mnt/externa/Backup/jellyfin:/backup:z
 AddDevice=/dev/dri:/dev/dri
+
+Label=traefik.enable=true
+Label=traefik.http.routers.jellyfin.rule=Host(`jellyfin.internal`)
+Label=traefik.http.routers.jellyfin.entrypoints=web
 
 [Service]
 Restart=on-failure

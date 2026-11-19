@@ -10,8 +10,6 @@ AutoUpdate=registry
 Pod=wordpress.pod
 GroupAdd=keep-groups
 
-Environment=PUID=1000
-Environment=PGID=1000
 Environment=MYSQL_DATABASE=wordpress
 Environment=MYSQL_USER=wordpress
 Environment=MYSQL_PASSWORD=wordpress
@@ -25,4 +23,4 @@ Restart=on-failure
 TimeoutStartSec=900
 
 [Install]
-WantedBy=default.target
+#WantedBy=default.target

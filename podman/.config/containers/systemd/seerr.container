@@ -1,23 +1,21 @@
 [Unit]
-Description=Jellyseerr
+Description=Seerr
 After=network.target
 
 [Container]
 ContainerName=seerr
-Image=ghcr.io/hotio/seerr
+Image=ghcr.io/seerr-team/seerr:latest
 AutoUpdate=registry
 User=0
 UserNS=keep-id:uid=1000,gid=1000
 GroupAdd=keep-groups
 PublishPort=5055:5055
+RunInit=true
 
 Environment=TZ=Europe/Stockholm
-Environment=WEBUI_PORT=5055/tcp
-Environment=PUID=1000
-Environment=PGID=1000
-Environment=UMASK=002
+Environment=PORT=5055/tcp
 
-Volume=seerr_data:/config:Z
+Volume=seerr_data:/app/config
 
 [Service]
 Restart=on-failure

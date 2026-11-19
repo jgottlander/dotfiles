@@ -16,9 +16,12 @@ Volume=caddy_data:/data:Z
 Volume=nextcloud_data:/var/www/html:z
 Notify=true
 
+Label=glance.parent=nextcloud
+Label=glance.name=Proxy
+
 [Service]
 Restart=on-failure
 TimeoutStartSec=900
 
 [Install]
-WantedBy=default.target
+#WantedBy=default.target

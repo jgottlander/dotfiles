@@ -5,10 +5,9 @@ After=network-online.target local-fs.target
 
 [Container]
 ContainerName=prowlarr
-Image=ghcr.io/hotio/prowlarr
+Image=lscr.io/linuxserver/prowlarr:latest
 AutoUpdate=registry
-User=0
-UserNS=keep-id:uid=1000,gid=1000
+UserNS=keep-id
 GroupAdd=keep-groups
 
 PublishPort=9696:9696
@@ -17,7 +16,7 @@ Environment=PUID=1000
 Environment=PGID=1000
 Environment=TZ=Europe/Stockholm
 
-Volume=prowlarr_data:/config:Z
+Volume=prowlarr_data:/config
 
 [Service]
 Restart=on-failure

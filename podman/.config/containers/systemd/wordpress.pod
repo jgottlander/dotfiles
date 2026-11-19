@@ -5,8 +5,8 @@ After=network-online.target local-fs.target
 
 [Pod]
 PodName=wordpress
-PublishPort=8089:80
-UserNS=keep-id
+PublishPort=8088:80
+#UserNS=keep-id
 
 [Service]
 Restart=on-failure

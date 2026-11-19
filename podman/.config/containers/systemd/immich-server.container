@@ -5,7 +5,7 @@ After=network-online.target immich-db.service immich-redis.service immich-ml.ser
 
 [Container]
 ContainerName=immich-server
-Image=ghcr.io/immich-app/immich-server:release
+Image=ghcr.io/immich-app/immich-server:v3
 AutoUpdate=registry
 Pod=immich.pod
 GroupAdd=keep-groups
@@ -15,6 +15,10 @@ Volume=/etc/localtime:/etc/localtime:ro
 AddDevice=/dev/dri:/dev/dri
 
 EnvironmentFile=./immich.env
+
+Label=glance.name=Immich
+Label=glance.icon=si:immich
+Label=glance.id=immich
 
 [Service]
 Restart=on-failure

@@ -58,6 +58,22 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
+if [ "$color_prompt" = yes ]; then
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+else
+    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+fi
+unset color_prompt force_color_prompt
+
+# If this is an xterm set the title to user@host:dir
+case "$TERM" in
+xterm*|rxvt*)
+    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+    ;;
+*)
+    ;;
+esac
+
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
@@ -110,45 +126,20 @@ if [ -d ~/.bashrc.d ]; then
     done
 fi
 unset rc
+# enable programmable completion features (you don't need to enable
+# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
+# sources /etc/bash.bashrc).
+if ! shopt -oq posix; then
+  if [ -f /usr/share/bash-completion/bash_completion ]; then
+    . /usr/share/bash-completion/bash_completion
+  elif [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+  fi          
+fi
 
 if [ "$EDITOR" = "/usr/bin/nano" ]; then
         export EDITOR=vim
 fi
 
-if [ -d ~/.config/nvm ]; then
-    export NVM_DIR="$HOME/.config/nvm"
-    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-fi
-
 eval "$(starship init bash)"
-
-#!/bin/bash
-#
-# File: 00-system-info - create the MOTD
-# Copyright: (C) Martin Doering <martin@datapulp.de>
-# License: Public Domain (do what you want with it)
-#
-
-diskusage=$(df -H -x squashfs -x tmpfs -x devtmpfs --total|grep total)
-
-printf "%`tput cols`s"|tr ' ' '#'
-echo " Hostname: $(hostname)"
-echo " Distro: $(lsb_release -s -d)"
-echo
-echo " CPU: $(cat /proc/cpuinfo | grep 'model name' | head -1 | cut -d':' -f2)"
-echo " Disk: $(echo $diskusage | awk '{ a = $2 } END { print a }'|sed 's/G/ G/'|sed 's/T/ T/')"
-echo " Memory: $(free -m | head -n 2 | tail -n 1 | awk {'print $2'}) M"
-echo " Swap: $(free -m | tail -n 1 | awk {'print $2'}) M"
-echo
-
-if which ip >/dev/null
-then
-echo " IP V4 Networks"
-ip -o -4 -br a|grep -v '^lo'|sed 's/^/ /'|sed 's/\/..//'
-echo
-echo " IP V6 Networks"
-ip -o -6 -br a|grep -v '^lo'|sed 's/^/ /'|sed 's/\/..//'
-fi
-printf "%`tput cols`s"|tr ' ' '#'
 

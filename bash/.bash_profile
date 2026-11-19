@@ -7,6 +7,5 @@ fi
 
 # User specific environment and startup programs
 
-if [[ -z $TMUX ]] && [[ -n $SSH_TTY ]]; then
-    exec tmux new-session -A -s mysession
-fi
+[ -r /home/josef/.byobu/prompt ] && . /home/josef/.byobu/prompt   #byobu-prompt#
+_byobu_sourced=1 . /usr/bin/byobu-launch 2>/dev/null || true

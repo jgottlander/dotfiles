@@ -12,7 +12,7 @@ GroupAdd=keep-groups
 AddCapability=SYS_ADMIN,DAC_READ_SEARCH
 
 Volume=music-assistant_data:/data:Z
-Volume=/mnt/externa/Media/Musik:/media:z
+Volume=/mnt/externa/media/music:/media:z
 
 [Service]
 Restart=always

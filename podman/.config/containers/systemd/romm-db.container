@@ -16,12 +16,12 @@ Environment=MARIADB_DATABASE=romm
 Environment=MARIADB_USER=romm
 Environment=MARIADB_PASSWORD=romm
 
-
-
+Label=glance.parent=romm
+Label=glance.name=DB
 
 [Service]
 Restart=always
 TimeoutStartSec=900
 
 [Install]
-WantedBy=default.target
+#WantedBy=default.target
